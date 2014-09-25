@@ -1,0 +1,56 @@
+mysql 主服务器 192.168.2.105
+      从服务器 192.168.2.106
+linux:centos
+version:5.0.95
+
+1、主数据库配置
+>vim /etc/my.cnf
+在mysqld下面添加下面内容
+#add start
+server-id=1  #这是数据库ID,此ID是唯一的，主库默认为1，其他从库以此ID进行递增，ID值不能重复，否则会同步出错；
+log-bin=mysql-bin #二进制日志文件，此项为必填项，否则不能同步数据；
+binlog-do-db=myshoes #需要同步的数据库，如果需要同步多个数据库；
+binlog-ignore-db=mysql #不需要同步的数据库；
+#add end
+
+保存后退出
+重启mysql 
+>service mysqld restart
+
+2、配置完成后需要建立同步用的数据库账户
+>mysql -uroot -p
+>use mysql
+>grant replication slave on *.* to 'test'@'192.168.2.106' identified by '123456';
+说明：
+test :从库的账号
+192.168.2.106：从库的数据库地址
+123456 ： 从库的密码
+
+3、显示主库信息
+mysql> show master status;
+
+4、备份数据库
+可以将数据库的结构已sql形式备份，直接导入到从数据库中。
+
+5、从库数据库配置
+>vim /etc/my.cnf
+在mysqld下面添加下面内容
+#add start
+server-id=2 # #这里ID改为2 因为主库为1;
+log-bin=mysql-bin #
+master-host=192.168.2.105 # 主库IP;
+master-user=test # 同步用的账户;
+master-password=123456 #同步账户密码，主库时的设置;
+master-port=3306 #同步数据库的端口号。
+
+#add end
+
+保存后退出，重启mysql
+>service mysqld restart
+
+6、进入从mysql，查看mysql服务器信息
+mysql>show slave status\G;
+
+如果slave_io_running和slave_sql_running都为yes则表示从服务器配置成功。
+
+参考地址 http://blog.csdn.net/pasic/article/details/7096995
