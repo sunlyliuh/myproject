@@ -1,0 +1,57 @@
+进程的概念
+进程管理命令
+
+ps 
+常用选项
+a: 显示所有用户的进程
+u: 显示用户名和启动时间
+x: 显示没有控制中断的进程
+e: 显示所有进程，包括没有控制终端的进程
+l: 长格式显示
+w: 宽行显示
+
+#ps: 查看屡属于自己的进程
+#ps -u or -l    : 查看屡属于自己进程的详细信息
+
+pid: 进程号
+ppid: 父进程的进程号
+tty: 进程启动的终端
+stat: 进程当前状态
+ s--休眠 d--不窠终端的休眠 r--运行状态 z--僵死 t--停止
+
+ni: 进程优先级
+
+#ps -le or -aux ：查看所有用户执行的进程的详细信息
+#ps -aux --sort pid :可按进程执行的时间、pid,uid等对进程进行排序
+#ps -le | grep httpd
+#ps -uU samlee :查看samlee用户的进程信息
+#pstree | more :查看进程树
+
+kill -- 关闭进程
+
+#kill 进程号 ： 关闭进程
+#kill -9 进程号 （强行关闭）
+#kill -l 进程号 （重启进程）
+#xkill :　关闭图形程序
+#killall : 结束所有进程 killall httpd
+#pgrep httpd  : 查看进程的pid
+#pkill httpd  : 根据进程名关闭进程名
+
+nice 和renice 
+
+nice 
+指定程序的运行优先级 （-20，19）
+格式： nice -n command
+例如： nice -5 myprogram 
+nice --5 /etc/rc.d/init.d/httpd start
+
+renice
+改变一个正在运行的进程的优先级
+格式： renice n pid
+例如 renice -5 进程号
+
+nohup
+是进程在用户退出登陆后仍旧继续执行
+格式：
+nohup program & 
+nohup find / -name init > /tmp/log20141010 & 
