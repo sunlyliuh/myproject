@@ -1,0 +1,9 @@
+#!/bin/bash
+wc /etc/passwd
+
+wc -c /etc/passwd
+#-c参数含义是让wc命令显示字符的个数
+wc -w /etc/passwd
+#-w 显示单词的个数
+wc -l /etc/passwd
+#-l 显示文件文本行的函数
