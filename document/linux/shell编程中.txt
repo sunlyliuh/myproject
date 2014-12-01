@@ -1,0 +1,49 @@
+ 变量测试语句
+
+变量测试语句：用户测试变量是否相等
+
+字符串测试：
+test str1=str2
+test str1!=str2
+test str1
+
+test int1 
+
+
+
+test -d file
+test -f file
+test -x file
+
+变量测试语句一般不单独使用，一般作为if语句的测试条件，如：
+if test -d $1 then 
+    ...
+fi
+
+
+变量测试语句可用[]简化
+web=`/usr/bin/pgrep httpd`
+if [ "$web" == ""]
+then 
+	/etc/rc.d/init.d/httpd start
+fi
+
+
+if [$# -ne 2]; then
+	echo 'not enough parameter'
+	exit 0
+fi
+
+if [$1 -eq $2]; then
+	echo "$1 equal $2"
+else
+	echo "$1 not equal $2"
+fi
+
+awk命令应用
+awk -F域分隔符‘命令’
+实例：
+1、检测系统中UID为0的用户
+awk -F: '$3==0 {print $1}' /etc/passwd
+2、检测系统中密码为空的用户
+awk -F: 'length($2)==0 {print $1}' /etc/shadow

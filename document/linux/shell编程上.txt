@@ -1,0 +1,55 @@
+  一个简单的shell
+#!/bin/sh
+echo "our first example"
+echo "we are currently in the following directory"
+/bin/pwd
+echo "this directory contains the following files"
+/bin/ls
+
+显示服务器信息
+#!/bin/sh
+
+/bin/date +%F >>　/tmp/sysinfo
+echo "disk info:" >> /tmp/sysinfo
+/bin/df -h >> /tmp/sysinfo
+
+
+#NUM=100
+#echo $NUM
+
+#TIME=`date`
+#echo $TIME
+
+#TIME=$(date +%F)
+#echo $TIME
+
+列出所有的变量
+#set
+删除变量
+#unset
+
+ls -l file1 file2 file3 
+$0 这个程序本身 ls -l
+$n 这个程序的第n个参数值 n=1-9
+
+
+$* 所有的参数
+$# 参数的个数
+$$ 进程执行的pid
+$! 
+$? 执行上一个程序的返回值
+
+
+read命令：从键盘读入数据，赋给变量
+如：read USERNAME
+
+
+sh -x read #可以看到整个脚本的执行过程
+
+expr命令
+：对整数型变量进行算术运算
+例如：
+expr 3+5
+expr $var - 5
+expr $var1 / $var2
+expr $var3 \* 10
