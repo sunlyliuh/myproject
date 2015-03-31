@@ -1,0 +1,27 @@
+文件目录管理
+mkdir
+语法：mkdir [-mp][目录名称]
+
+-m用来指定要创建目录的权限
+-p创建一大串级联目录，就算石创建一个已经存在的目录，也不报错
+
+
+rmdir
+删除空目录
+
+rm
+-r:删除目录用的选项，等同于rmdir
+-f:强制删除，不再提示是否要删除
+
+rm -rf
+
+环境变量PATH
+which ,用来查找某个命令的绝对路径
+which rmdir
+
+which rm
+
+which ls
+
+增加环境变量
+PATH=$PATH:/root
