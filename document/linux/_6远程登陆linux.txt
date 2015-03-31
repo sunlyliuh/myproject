@@ -1,0 +1,13 @@
+手动配置ip
+编辑文件  /etc/sysconfig/network-scripts/ifcfg-eth0
+增加
+IPADDR=10.72.137.85
+NETMASK=255.255.255.0
+GATEWAY=10.72.137.1
+
+ONBOOT=yes
+BOOTPROTO=none
+
+保存后重启网络服务 service network restart
+
+ifconfig eth0
