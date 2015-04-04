@@ -1,0 +1,51 @@
+nginx 安装
+下载nginx
+
+wget  http://nginx.org/download/nginx-0.8.54.tar.gz  
+
+解压：
+tar zxvf nginx-0.8.54.tar.gz  
+
+进入nginx目录  cd nginx-0.8.54 
+
+编译：./configure   
+
+到这异步可能会出现，找不到pcre的error
+
+yum -y install gcc pcre-devel openssl openssl-devel  
+
+安装完后 ./configure 
+
+
+最后会看到类似下面信息，表示编译成功 
+Configuration summary  
+  + using system PCRE library  
+  + OpenSSL library is not used  
+  + md5: using system crypto library  
+  + sha1 library is not used  
+  + using system zlib library  
+
+编译代码
+make
+
+安装
+make install
+
+启动nginx 
+/usr/local/nginx/sbin/nginx  
+
+查看是否启动成功
+ps aux | grep nginx  
+
+打开浏览器http://localhost/ 即可看到nginx的默认欢迎页 
+Welcome to nginx! 
+
+nginx默认是用80端口，我们可以在nginx安装目录下的conf/nginx.conf文件中更改。 
+
+vim /usr/local/nginx/conf/nginx.conf  
+
+重启nginx
+kill -HUP `cat /usr/local/nginx/logs/nginx.pid`
+
+停止nginx
+kill  `cat /usr/local/nginx/logs/nginx.pid`  

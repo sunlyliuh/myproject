@@ -11,3 +11,25 @@ BOOTPROTO=none
 保存后重启网络服务 service network restart
 
 ifconfig eth0
+
+
+linux yum 卸载php，mysql
+
+使用命令 rpm -qa|grep 列出需要卸载的软件包
+rpm -qa|grep php
+使用rpm -e 加包名
+rpm -e php-4.3.9-3.15 
+
+
+安装一个软件时
+yum -y install httpd
+安装多个相类似的软件时
+yum -y install httpd*
+安装多个非类似软件时
+yum -y install httpd php php-gd mysql
+卸载一个软件时
+yum -y remove httpd
+卸载多个相类似的软件时
+yum -y remove httpd*
+卸载多个非类似软件时
+yum -y remove httpd php php-gd mysql
