@@ -132,6 +132,9 @@ find . -name test2
 find /tmp/ -type d
 find /tmp/ -type f
 
+删除文件大小为0的文件
+find . -name "*" -type f -size 0c | xargs -n 1 rm -f
+
 linux的链接文件
 链接文件分为两种，硬链接(hard link)和软链接(symbolic link)。
 
