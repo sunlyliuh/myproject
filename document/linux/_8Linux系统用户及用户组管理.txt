@@ -86,5 +86,28 @@ user12:x:511:502::/home/user12:/bin/bash
 
 ‘-r’ 选项的作用只有一个，就是删除账户的时候连带账户的家目录一起删除。
 
+5、更改用户的finger:chfn
+
+前面内容中提到了findger，即在/etc/passwd文件中的第5个字段中所显示的信息
+>>chfn user11
+
+chfn’ 命令可以修改用户的findger信息，比如name, office, office phone 以及 Home phone.修改完后，就会在/etc/passwd文件中的user11的那一行第五个字段中看到相关信息了，默认是空的
+
+6、创建/修改一个用户的密码
+命令：passwd
+语法：passwd [username]
+>> passwd
+
+“passwd” 后面不加username则是修改当前账户的密码。如果您登陆的是root账户，后面可以跟普通账户的名字，意思是修改指定账户的密码
+
+7、mkpasswd
+用这个命令可以生成密码，默认linux没有这个命令，需要安装一个包“expect",yum install -y expect
+
+8、用户身份切换
+命令su
+语法：su [-] username
+后面可以跟 ‘-‘ 也可以不跟，普通用户su不加username时就是切换到root用户，当然root用户同样可以su到普通用户。 ‘-‘ 这个字符的作用是，加上后会初始化当前用户的各种环境变量
+
+
 
 
