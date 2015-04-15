@@ -1,0 +1,49 @@
+Linux磁盘管理
+
+1、命令：df
+
+查看挂载磁盘的总容量，使用容量，剩余容量等，默认是按k为单位显示的
+
+df常用选项有“-i -h -k -m等
+>>df -i
+”-i"查看inodes使用状况
+
+“-h"使用合适的单位显示，如里”G"
+>>df -h
+
+"-k","-m"分别以k,M为单位显示
+
+2、命令：du
+"du"用来查看某个目录或文件所占空间大小
+语法：du [-abckmsh] [文件或者目录名]
+"-a"全部文件与目录大小都列出来
+>>du -a /home/liuhui
+
+如果du不指定单位的话，默认显示单位为k
+"-b"列出的值以bytes为单位输出
+"-k"以kb为单位输出
+"-m"以mb为单位输出
+"-h"系统自动调节单位
+>>du -h /home/liuhui
+
+"-c"最后加总
+>>du -c /home/liuhui
+"-s"只列出总和
+>>du -s /home/liuhui
+
+一般用 du -sh filename 这样的形式
+>>dus -sh /var/www
+
+磁盘的分区和格式化
+init 0 关机
+
+命令：fdisk
+语法：fdisk [-l] [设备名称] 
+
+>>fdisk -l
+>>fdisk -l /dev/sda
+
+fdisk 如果不加“-l"则进入另一个模式，在该模式下，可以对磁盘进行分区操作
+>>fdisk /dev/sdb
+p使用p查看分区情况
+使用n新建分区
