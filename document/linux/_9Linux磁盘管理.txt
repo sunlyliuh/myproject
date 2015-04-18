@@ -47,3 +47,25 @@ fdisk 如果不加“-l"则进入另一个模式，在该模式下，可以对磁盘进行分区操作
 >>fdisk /dev/sdb
 p使用p查看分区情况
 使用n新建分区
+
+3、格式话磁盘分区
+命令：mke2fs,mkfs.ext2,mkfs.ext3,mkfs.ext4
+>>mke2fs -t ext4 /dev/sdb5
+>>mke2fs -t ext4 -b 8192 /dev/sdb5
+
+4、挂载/卸载磁盘
+命令：mount
+>>mount /dev/sdb1 /newdir/
+>>ls /newdir/
+>>df -h
+把 /dev/sdb1 挂载到 /newdir 后，原来在 /newdir 下的 newfile.txt 被覆盖了
+
+命令：umount ---卸载磁盘分区
+
+5、建立一个swap文件增加虚拟内存
+>>dd if=/dev/zero of=/tmp/newdisk bs=4k count=102400
+>>mkswap -f /tmp/newdisk
+>>free -m
+>>swapon /tmp/newdisk
+>>free -m
+
