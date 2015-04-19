@@ -1,0 +1,70 @@
+文档的压缩与打包
+在windows下接触最多的压缩文件就是.rar格式的了，但在linux下这样的不能识别，有一种文件在windows和linux下都能使用那就是.zip格式的文件。
+
+在linux下最常见的压缩文件通常都是已.tar.gz为结尾的，此外还有.tar,.gz,.bz2,zip等等
+
+.gz  gzip压缩工具压缩的文件
+.bz2 bzip2压缩工具压缩的文件
+.tar tar打包程序打包的文件
+.tar.gz  可以理解为先用tar打包，然后再gzip压缩
+.tar.bz2  可以理解为先用tar打包，然后再bzip2压缩
+
+1、gzip压缩工具
+语法 gzip [-d#] filename ,其中#为1-9的数字
+"-d"：解压缩时使用
+"-#":压缩等级，1压缩最差，9压缩最好，6为默认
+
+>>gzip test.txt   压缩
+>>gzip -d test.txt.gz  解压缩时需要使用-d参数
+
+gzip不支持压缩目录
+
+2、bzip2压缩工具
+语法：bzip2 [-dz] filename
+
+"-d"：解压缩
+"-z":压缩  可加可不加
+
+>>bzip2 test.txt        压缩
+>>bzip2 -d test.txt.bz2 解压缩
+
+bzip2同样也不可以压缩目录
+
+3、tar压缩工具
+tar本身为一个打包工具，可以把目录打包成一个文件，它的好处是它把所有文件整合成一个大文件整体，方便拷贝或者移动
+
+语法：tar [-zjxcvfpP] filename
+"-z":同事用gzip压缩
+"-j":同时用bzip2压缩
+"-x":解包或者解压缩
+"-t"：查看tar包里面的文件
+"-c":建立一个tar包或者压缩文件包
+"-v":可视化
+"-f"：后面跟文件名，压缩时跟"-f文件名”，意思是压缩后的文件名为filename, 解压时跟 “-f 文件名”，意思是解压filename. 请注意，如果是多个参数组合的情况下带有 “-f”，请把 “-f” 写到最后面。
+--exclude filename : 在打包或者压缩时，不要将filename文件包括在内
+>> tar -cvf test111.tar test111
+
+3.1 打包的同时使用gzip压缩
+>>tar -czvf test111.tar.gz test111
+
+"-tf"可以查看包或者压缩包的文件列表
+>>tar -tf test111.tar.gz
+
+"-zxvf" 用来解压tar.gz的压缩包
+>>tar -zxvf test111.tar.gz
+
+
+3.2 打包的同时使用bzip2压缩
+和gzip压缩不同的是，这里使用“-cjvf"选项来压缩
+>>tar -cjvf test111.tar.bz2 test111
+
+同样可以使用”-tf“来查看压缩包文件列表
+>>tar -tf test111.tar.bz2
+
+解压.tar.bz2的压缩包也很简单
+>>tar -jxvf test111.tar.bz2 test111
+
+--exclude 这个选项的使用，在日常的管理工作中您也许会用到它
+>>tar -cvf test111.tar --exclude test3.txt test111
+
+test111.tar 是放到了 --exclude 选项的前面。除了可以排除文件，也可以排除目录
