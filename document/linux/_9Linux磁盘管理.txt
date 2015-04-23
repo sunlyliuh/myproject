@@ -32,7 +32,7 @@ df常用选项有“-i -h -k -m等
 >>du -s /home/liuhui
 
 一般用 du -sh filename 这样的形式
->>dus -sh /var/www
+>>du -sh /var/www
 
 磁盘的分区和格式化
 init 0 关机
