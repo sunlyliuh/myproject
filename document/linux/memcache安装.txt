@@ -1,0 +1,60 @@
+memcached及memcache的安装
+说明：linux上面安装的memcached是服务器，memcache是php的memcache扩展，php只有安装了memcache才能够访问memcached里面的数据。
+
+1、memcache安装
+下载地址： wget http://pecl.php.net/get/memcache-2.2.3.tgz
+>>wget http://pecl.php.net/get/memcache-2.2.3.tgz
+>>tar zxvf memcache-2.2.3.tgz
+>>cd memcache-2.2.3
+>>/usr/local/php/bin/phpize
+>>./configure --with-php-config=/usr/local/php/bin/php-config
+>>make
+>>make install
+>>cp modules/memcache.so /usr/local/php/ext/
+
+在php.ini中添加
+extension=memcache.so
+修改扩展路径为： extension_dir="/usr/local/php/ext"
+>>/usr/local/php/bin/php-cgi -m    #检测和查看具体的参数
+>>service nginx restart  #重启nginx
+
+2、memcached安装
+memcached需要安装libevent
+查看是否安装：
+>>rpm -qa|grep libevent
+livevent的安装参考手册
+
+下载地址：wget http://www.danga.com/memcached/dist/memcached-1.2.0.tar.gz
+>>wget http://www.danga.com/memcached/dist/memcached-1.2.0.tar.gz
+>>tar -zxvf memcached-1.2.0.tar.gz
+>>cd memcached-1.2.0
+>>./configure --prefix=/usr/local/memcached
+>>make
+>>make install
+
+启动memcached服务器
+>>/usr/local/memcached/bin/memcached -m 2048 -p 12000 -l 127.0.0.1 -d -u www
+
+
+测试memcached
+>>telnet 127.0.0.1 12000
+
+
+
+
+
+php 代码测试 /////////////////////////////////////////////////////////////////
+
+<?php
+$mem = new Memcache;
+$mem->connect('127.0.0.1' ,12000); // retrt_interval=-1, status=false
+
+$varKey = $mem->get('var_key');
+if($varKey){
+    echo 'memcache is in use';
+    echo 'varkey:'.$varKey;
+}else{
+    $mem->set('var_key', 'some really big variable', MEMCACHE_COMPRESSED, 600);
+    echo 'varKey is not exist ,set var_key value';
+}
+?>
