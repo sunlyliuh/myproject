@@ -2,6 +2,7 @@ shell脚本之前的基础知识
 
 bash的特点
 1、记录命令历史
+history
 敲过的命令保存在用户家目录中的.bash_history中
 !!      执行上一条指令
 !n      执行命令历史中第n条指令  ！100
@@ -19,5 +20,86 @@ bash的特点
 4、通配符
 在bash下，可以使用*来匹配零个或多个字符，而用？匹配一个字符
 
+5、输入输出重定向
+输入重定向是<,输出重定向是>,另外还有错误重定向2>,以及追加重定向>>
+
+6、管道符
+”|",把前面的命令运行的结果丢给后面的命令
+
+7、作业控制
+当运行一个进程时，可以使它暂停ctrl+z,然后使用fg命令恢复他，利用bg命令使他到后台运行，也可以使他终止
+ctrl+c
+
+变量
+echo $PATH $HOME $PWD $LOGNAME
+查看系统预设的环境变量
+>>env
+
+把系统预设的全部变量都显示出来
+>>set
+
+1)要想系统内所有用户登陆后都能使用该变量
+需要在"/etc/profile"文件最末行加入 export myname=liuhui
+然后运行 source /etc/profile,就可以生效了
+
+2)只想让当前用户使用该变量
+需要在用户主目录下的 .bashrc文件最后一行加入 export myname=liuhui
+然后运行 source .bashrc就可以生效了
+
+如果变量内容总需要用到其他命令运行结果则可以使用反引号
+>>myname=`pwd`
+>>echo $myname
+
+变量内容可以累加其他变量的内容，需要加双引号
+>>myname="$LOGNAME"liuhui
+>>echo $myname
+
+pstree:这个命令会把linux系统中所有进程通过树形结构打印出来
+
+如果想取消某个变量：这个文件预设了几个重要的变量，例如PATH, USER, LOGNAME, MAIL, INPUTRC, HOSTNAME, HISTSIZE, umask等等
+unset 变量名
 
 
+在linux系统中，这些变量被存到了哪里
+/etc/profile:这个文件预设了几个重要的变量，例如PATH, USER, LOGNAME, MAIL, INPUTRC, HOSTNAME, HISTSIZE, umask等等
+/etc/bashrc:这个文件主要预设umask以及PS1
+
+
+命令：cut
+用来截取某一个字段
+语法：cut -d '分割字符' [-cf] n
+-d:后面跟分隔字符，分隔字符要用单引号括起来
+-c:后面接的是第几个字符
+-f:后面接的是第几个区块
+
+>>cat /etc/passwd | cut -d ':' -f 1 |head -n5
+
+>>head -n2 /etc/passwd|cut -c2
+>>head -n2 /etc/passwd|cut -c2-10
+
+命令：sort
+语法：sort [-t 分隔符] [-kn1,n2] [-nru]
+-t分隔符：
+-n:使用纯数字排序
+-r:反向排序
+-u:去重复
+-kn1,n2:由n1区间排序到n2区间，可以只写-kn1,即对n1字段排序
+>>head -n5 /etc/passwd|sort
+
+命令：wc
+用于统计文档的行数、字符数、词数，常用的选项为：
+-l:统计行数
+-m:统计字符数
+-w:统计词数
+>> wc /etc/passwd
+27 37 1220 /etc/passwd
+
+wc不跟任何选项，直接跟文档，则会把行数，词数，字符数依次输出。
+
+命令：uniq
+去重复的行，
+-c:统计重复的行数，并把行数写在前面
+使用uniq的前提是需要先给文件排序，否则不管用
+>>sort testb.txt | uniq
+
+>>sort testb.txt | uniq -c
