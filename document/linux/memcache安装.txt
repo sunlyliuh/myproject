@@ -18,6 +18,8 @@ extension=memcache.so
 >>/usr/local/php/bin/php-cgi -m    #检测和查看具体的参数
 >>service nginx restart  #重启nginx
 
+
+
 2、memcached安装
 memcached需要安装libevent
 查看是否安装：

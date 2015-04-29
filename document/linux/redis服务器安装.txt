@@ -1,0 +1,131 @@
+redis安装
+下载redis
+>>wget http://download.redis.io/releases/redis-2.8.3.tar.gz
+>>tar xzf redis-2.8.3.tar.gz
+>>cd redis-2.8.3
+>>make
+
+在进行make的时候报错
+/usr/local/src/redis-2.8.3/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4'
+是因为linux是32位的，解决方案如下
+>>make CFLAGS="-march=i686"
+
+
+>>src/redis-server      #启动并运行redis
+
+测试是否启动成功
+>>src/redis-cli
+>>set username liuhui
+>>get username
+
+这样安装肯定不行，我们需要对redis进行系统的管理，增加开机启动等
+
+>>cd src
+>>mkdir /usr/redis
+>>cp redis-server /usr/redis
+>>cp redis-benchmark /usr/redis
+>>cp redis-cli /usr/redis
+>>touch redis.conf
+>>cp redis.conf /usr/redis
+>>cd /usr/redis
+
+>>redis-server redis.conf    #启动redis
+
+//////////////////////////////////////////////////
+自己动手制作一个redis启动脚本方便管理
+>>vim /etc/rc.d/init.d/redisd
+
+#!/bin/sh
+#chkconfig: 345 86 14
+#description: Startup and shutdown script for Redis
+ 
+PROGDIR=/usr/redis #安装路径
+PROGNAME=redis-server
+DAEMON=$PROGDIR/$PROGNAME
+CONFIG=/usr/redis/redis.conf
+PIDFILE=/var/run/redis.pid
+DESC="redis daemon"
+SCRIPTNAME=/etc/rc.d/init.d/redisd
+ 
+start()
+{
+         if test -x $DAEMON
+         then
+        echo -e "Starting $DESC: $PROGNAME"
+                   if $DAEMON $CONFIG
+                   then
+                            echo -e "OK"
+                   else
+                            echo -e "failed"
+                   fi
+         else
+                   echo -e "Couldn't find Redis Server ($DAEMON)"
+         fi
+}
+ 
+stop()
+{
+         if test -e $PIDFILE
+         then
+                   echo -e "Stopping $DESC: $PROGNAME"
+                   if kill `cat $PIDFILE`
+                   then
+                            echo -e "OK"
+                   else
+                            echo -e "failed"
+                   fi
+         else
+                   echo -e "No Redis Server ($DAEMON) running"
+         fi
+}
+ 
+restart()
+{
+    echo -e "Restarting $DESC: $PROGNAME"
+    stop
+         start
+}
+ 
+list()
+{
+         ps aux | grep $PROGNAME
+}
+ 
+case $1 in
+         start)
+                   start
+        ;;
+         stop)
+        stop
+        ;;
+         restart)
+        restart
+        ;;
+         list)
+        list
+        ;;
+ 
+         *)
+        echo "Usage: $SCRIPTNAME {start|stop|restart|list}" >&2
+        exit 1
+        ;;
+esac
+exit 0
+
+>>chmod +x /etc/rc.d/init.d/redisd  #增加执行权限
+>>chkconfig --add redisd
+>>chkconfig --level 345 redisd on
+>>chkconfig --list redisd
+
+>>/etc/rc.d/init.d/redisd start    #启动redis
+
+
+设置开机启动redis
+
+>>vim /etc/rc.d/rc.local
+添加一行：/etc/rc.d/init.d/redisd start
+
+
+
+
+2、安装php的redis扩展
