@@ -1,0 +1,69 @@
+正则表达式常用的三种工具使用方法
+1、grep/egrep
+grep [-cinvABC] 'word' filename
+-c:打印符合要求的行数
+-i:忽略大小写
+-n:在输出符合要求的行的同事连同行号一起输出
+-v:打印不符合要求的行
+-A:后跟一个数字，例如-A2则表示打印符合要求的行以及下面2行
+-B：后跟一个数字，例如-B2则表示打印符合要求的行以及上面2行
+-C:后跟一个数字，例如-C2则表示打印符合要求的行以及上下各2行
+
+>>grep -A2 'halt' /etc/passwd
+
+>>grep -B2 'halt' /etc/passwd
+
+>>grep -C2 'halt' /etc/passwd
+
+1.1过滤出带有某个关键词的行并输出行号
+>>grep -n 'root' /etc/passwd
+
+1.2 过滤不带有某个关键词的行，并输出行号
+>>grep -nv 'nologin' /etc/passwd
+
+1.3过滤出所有包含数字的行
+>>grep '[0-9]' /etc/inittab
+
+1.4过滤出所有不包含数字的行
+>>grep -v '[0-9]' /etc/inittab
+
+1.5 把所有以‘#’开头的行去除
+>>grep -v '^#' /etc/inittab
+
+1.6 去除所有空行和以 ‘#'开头的行
+>>grep -v '^#' /etc/crontab | grep -v '^$'
+
+1.7 过滤任意一个字符与重复字符
+>>grep 'r..0' /etc/passwd
+
+1.8指定要过滤字符出现的次数
+>>grep 'o\{2\}' /etc/passwd
+
+2.sed工具的使用
+2.1 打印某行
+>>sed -n 'n'p filename
+
+>> sed -n '2'p filename   #打印第二行
+>>sed -n '1,$'p filename #打印所有行
+>>sed -n '1,3'p test.txt #打印第1-3行
+
+2.2 打印包含某个字符串的行
+>>sed -n '/root/'p text.txt
+grep中使用的特殊字符，如^$.*等同样也能在sed中使用
+>>sed -n '/^1/'p test.txt
+>>sed -n '/in$/'p test.txt
+>>sed -n '/r..o/'p test.txt
+>>sed -n '/ooo*/'p test.txt
+
+2.3实现多个行为
+>>sed -e '1'p -e '/111/'p -n text.txt
+
+2.4删除某行或者多行
+>>sed '1'd text.txt
+>>sed '1,3'd text.txt
+>>sed '/oot/'d test.txt
+
+2.5替换字符或字符串
+>>sed '1,2s/ot/to/g' test.txt
+>>sed 's/[0-9]//g' test.txt
+>>sed 's/[a-zA-Z]//g' test.txt
