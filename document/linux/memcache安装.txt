@@ -25,14 +25,30 @@ memcached需要安装libevent
 查看是否安装：
 >>rpm -qa|grep libevent
 livevent的安装参考手册
+2.1libevent的安装
+>>wget http://www.monkey.org/~provos/libevent-1.3b.tar.gz
+>>tar -zxvf libevent-1.3b.tar.gz
+>>cd libevent-1.3b
+>>./configure --prefix=/usr/local/libevent
+>>make 
+>>make install
+
+
 
 下载地址：wget http://www.danga.com/memcached/dist/memcached-1.2.0.tar.gz
 >>wget http://www.danga.com/memcached/dist/memcached-1.2.0.tar.gz
 >>tar -zxvf memcached-1.2.0.tar.gz
 >>cd memcached-1.2.0
->>./configure --prefix=/usr/local/memcached
+>>./configure --prefix=/usr/local/memcached --with-libevent=/usr/local/libevent
 >>make
 >>make install
+
+
+注意：可能在启动memcached的时候报以下错误：
+#/usr/local/memcached/bin/memcached -m 2048 -p 11211 -l 127.0.0.1 -d -u www
+/usr/local/memcached/bin/memcached: error while loading shared libraries: libevent-1.3b.so.1: cannot open shared object file: No such file or directory
+那么需要把 libevent-1.2a.so.1 拷贝或链接到 /usr/lib 中，否则 memcached 无法正常加载。  cp /usr/local/libevent/lib/libevent-1.3b.so.1 /usr/lib
+
 
 启动memcached服务器
 >>/usr/local/memcached/bin/memcached -m 2048 -p 12000 -l 127.0.0.1 -d -u www
