@@ -3,7 +3,7 @@
 grep [-cinvABC] 'word' filename
 -c:打印符合要求的行数
 -i:忽略大小写
--n:在输出符合要求的行的同事连同行号一起输出
+-n:在输出符合要求的行的同时连同行号一起输出
 -v:打印不符合要求的行
 -A:后跟一个数字，例如-A2则表示打印符合要求的行以及下面2行
 -B：后跟一个数字，例如-B2则表示打印符合要求的行以及上面2行
@@ -67,3 +67,40 @@ grep中使用的特殊字符，如^$.*等同样也能在sed中使用
 >>sed '1,2s/ot/to/g' test.txt
 >>sed 's/[0-9]//g' test.txt
 >>sed 's/[a-zA-Z]//g' test.txt
+
+3、awk工具的使用
+3.1截取文档中的某个段
+>>head -n2 /etc/passwd |awk -F':' '{print $1}'
+>>head -n2 /etc/passwd |awk -F':' '{print $0}'   #$0代表整行
+>>head -n2 /etc/passwd |awk -F':' '{print $1"#"$2"#"$3"#4"}'
+
+3.2匹配字符或字符串
+>>awk '/oo/' passwd
+>>awk -F':' '$1 ~/oo/' passwd      #匹配截取出来的第一段
+>>awk -F':' '/root/ {print $1,$3} /test/ {print $1,$3}' /etc/passwd #匹配多次
+
+3.3条件操作符
+>>awk -F':' '$3=="0"' /etc/passwd
+>>awk -F':' '$7!="/sbin/nologin"' /etc/passwd
+>>awk -F':' '$3<$4' /etc/passwd
+
+>>awk -F':' '$3>"5" && $3<"7"' /etc/passwd
+>>awk -F':' '$3>"5" || $7=="/bin/bash"' /etc/passwd
+
+3.4 awk的内置变量
+NF:用分隔符分隔后一共有多少段
+NR:行数
+>>head -n3 /etc/passwd | awk -F':' '{print NF}'
+>>head -n3 /etc/passwd | awk -F':' '{print $NF}'
+>>awk 'NR>20' /etc/passwd
+
+>>awk -F':' 'NR>20 && $1 ~ /ssh/' /etc/passwd
+
+3.5 awk的数学运算
+awk可以把段值修改
+>>head -n 3 /etc/passwd |awk -F':' '$1="root"'
+
+awk还可以对各个段的值进行数学运算
+>>head -n2 /etc/passwd |awk -F':' '{$7=$3+$4}'
+>>head -n2 /etc/passwd |awk -F':' '{$7=$3+$4;print $0}'
+
