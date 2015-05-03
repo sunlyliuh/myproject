@@ -53,6 +53,10 @@ livevent的安装参考手册
 启动memcached服务器
 >>/usr/local/memcached/bin/memcached -m 2048 -p 12000 -l 127.0.0.1 -d -u www
 
+设置开机启动memcached
+
+>>vim /etc/rc.d/rc.local
+添加一行：/usr/local/memcached/bin/memcached -m 2048 -p 12000 -l 127.0.0.1 -d -u www
 
 测试memcached
 >>telnet 127.0.0.1 12000
