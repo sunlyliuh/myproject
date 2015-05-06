@@ -1,0 +1,11 @@
+命令：date
+>>date +"%Y-%m-%d %H:%M:%s"
+
+date +%Y 以四位数字打印年费
+date +%y 以2位数字打印年份
+date +%m 月份
+date +%d 日期
+date +%H 小时
+date +%M 分钟
+date +%S 秒
+date +%w 星期
