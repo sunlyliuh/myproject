@@ -1,0 +1,136 @@
+shell脚本在执行的时候后边可以跟参数
+#！/bin/bash
+sum=$[$1+$2]
+echo "sum=$sum"
+
+执行的时候 sh option.sh 1 2
+
+shell脚本中的逻辑判断
+1）不带else
+if 判断语句; then
+    command
+fi
+
+read -p "please input yourscore: " a
+if ((a<60)); then
+    echo "you didn't pass the exam."
+fi
+
+2)带有else
+if 判断语句; then
+    command
+else
+    command
+fi
+
+read -p "please input your score: " a
+if ((a<60)); then
+    echo "you didn't pass the exam."
+else
+    echo "good! you passed the exam"
+fi
+
+3)带有elif
+
+if 判断语句1 ; then
+    command
+elif 判断语句2 ; then
+    command
+else
+    command
+fi
+
+read -p "Please input your score: " a
+ if ((a<60)); then
+         echo "You didn't pass the exam."
+ elif ((a>=60)) && ((a<85)); then
+         echo "Good! You pass the exam."
+ else
+         echo "very good! Your socre is very high!"
+ fi
+
+在判断数值大小除了可以用(())的形式外，还可以用[],不能用>,< =
+要使用-lt(小于)，-gt(大于),-le(小于等于)，-ge(大于等于)，-eq(等于)，-ne(不等于)
+
+>>a=10; if [ $a -lt 5 ]; then echo ok; fi
+>>a=10; if [ $a -gt 5 ]; then echo ok; fi
+>>a=10; if [ $a -ge 10 ]; then echo ok; fi
+>>a=10; if [ $a -eq 10 ]; then echo ok; fi
+
+if中使用&&和||的情况
+>>a=10; if [ $a -lt 1 ] || [ $a -gt 5]; then echo ok; fi
+
+
+shell脚本中if还经常判断关于档案属性
+
+-e:判断文件或目录是否存在
+-d:判断是不是目录，并是否存在
+-f:判断是否是普通文件，并存在
+-r:判断文档是否有读权限
+-w:判断是否有写权限
+-x:判断是否可执行
+具体格式为：
+if [ -e filename]; then
+>>if [ -d /home/ ]; then echo ok; fi
+>>if [ -f /home/ ]; then echo ok; fi
+
+在shell脚本中，除了用if来判断逻辑外，还有一种常用的方式，那就是case
+case 变量 in
+value1)
+        command
+	;;
+value2)
+	command
+	;;
+value3)
+	command
+	;;
+*)
+	command
+	;;
+esac
+
+例子：
+read -p "Input a number: " n
+a=$[$n%2]
+case $a in
+
+    1)
+        echo "The number is odd."
+        ;;
+    0)
+        echo "The number is even."
+        ;;
+    *)
+        echo "It's not a number!"
+        ;;
+esac
+
+shell脚本中的循环
+1.for循环
+for i in `seq 1 5`; do
+	echo $i
+done
+
+for循环的基本结构
+for 变量名 in 循环的条件; do
+	command
+done
+
+for file in `ls`;do echo $file;done
+
+2、while循环
+while 条件; do
+	command
+done
+
+a=5
+while [ $a -ge 1 ]; do
+	echo $a
+	a=$[$a-1]
+done
+
+函数
+function 函数名(){
+	command
+}
