@@ -1,5 +1,5 @@
-命令：date
->>date +"%Y-%m-%d %H:%M:%s"
+1、命令：date
+>>date +"%Y-%m-%d %H:%M:%S"
 
 date +%Y 以四位数字打印年费
 date +%y 以2位数字打印年份
@@ -9,3 +9,31 @@ date +%H 小时
 date +%M 分钟
 date +%S 秒
 date +%w 星期
+
+2、变量
+d=`date +%H:%M:%S`
+echo $d
+
+计算2个数的和
+a=1
+b=2
+sum=$[$a+$b]
+echo $sum
+数学计算要用'[]'括起来并且外头要带一个‘$'
+
+read命令可以从标准输入获得变量的值
+echo "please input a number"
+read x
+echo "please input another number:'
+read y
+sum=$[$x+$y]
+echo $sum
+
+sh test4.sh
+sh -x !$ 可以看这个执行过程
+
+read -p类似于echo的作用
+read -p "please input a number:" x
+read -p "please input another number:" y
+sum=$[$x+$y]
+echo $sum
