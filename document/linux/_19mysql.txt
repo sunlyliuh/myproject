@@ -1,0 +1,44 @@
+1、更改mysql数据库root的密码
+
+>>/usr/local/mysql/bin/mysql -uroot
+
+将mysql加入环境变量PAHT中
+>>echo "PATH=$PATH:/usr/local/mysql/bin" >> /etc/profile
+>>source /etc/profile
+
+>>mysqladmin -uroot password 'yourpassword'
+
+将建表语句打印出来
+>>show create table slow_log\G;
+
+查看当前是哪个用户
+>>select user();
+
+查看当前数据库版本
+>>select version();
+
+查看当前mysql状态
+>>show status;
+
+查看mysql的参数
+>>show variables;
+
+>>show variables like 'max_connect%'
+
+查看当前mysql服务器的队列
+>>show processlist;
+
+>>创建一个普通用户并授权
+>>grant all on *.* to user1 identified by '123456'
+
+>>grant all on db1.* to 'user2'@'10.0.2.100' identified by '123456'
+
+用户和主机的ip之间有一个@,另外主机ip那里可以用%代替，表示所有主机
+>>grant all on db1.* to 'user3'@'%' identified by '231222'
+
+mysql数据库的备份与恢复
+>>mysqldump -uroot -p'123456' mysql > /tmp/mysql.sql
+
+恢复
+>>mysql -uroot -p'123456' mysql </tmp/mysql.sql
+
