@@ -39,3 +39,10 @@ p,P     ：p复制的数据从光标下一行粘贴，P则从上一行粘贴
 :w [filenae]  :编辑后的文档另存为filename
 n1,n2 w [filename]  :将n1到n2的内容另存为filename这个文档
 :! command     :暂时离开vim运行某个linux命令，例如 :! ls /home
+
+
+ :n1,n2s/^/#/g  
+:1,8s/^/#/g 1到8行家#号
+:1,8s/^#//g    1到8行去掉#号
+:1,6s/^/\/\//g 1到6行行首加//
+:ab lh sunlyliuh@163.com 直接输入lh再按enter会自动插入sunlyliuh@163.com
