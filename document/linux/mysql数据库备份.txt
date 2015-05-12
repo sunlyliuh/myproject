@@ -1,0 +1,33 @@
+#!/bin/bash
+# back up mysql data
+backupPath="/usr/local/sbin/data"
+todayDate=`date +"%Y%m%d"`
+backupDir="$backupPath/$todayDate"
+ 
+#create fileDir
+if [ -e $backupDir ]; then
+    echo "dir has exist"
+else
+    mkdir -p $backupDir
+fi
+ 
+#one method
+#backfile="$backupDir/myuser.sql"
+#/usr/local/mysql/bin/mysqldump -uroot -p'123456' myuser > $backfile
+ 
+#two method
+backArr=(myuser mysql)
+for (( i=0; i< ${#backArr[@]}; ++i ));do
+    backfile="$backupDir/${backArr[i]}.sql"
+    #echo $backfile
+    echo "${backArr[i]}"
+    /usr/local/mysql/bin/mysqldump -uroot -p'123456' ${backArr[i]} > $backfile
+done
+ 
+result=$?
+
+if [ $result -eq 0 ];then
+    echo 'success'
+else
+    echo 'error'
+fi
