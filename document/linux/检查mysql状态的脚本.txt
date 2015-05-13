@@ -1,0 +1,19 @@
+#!/bin/bash
+# check mysql status
+
+/usr/local/mysql/bin/mysqladmin -uroot -p123456 ping &>/dev/null
+result=$?
+
+if [ $result -eq 0 ];then
+    echo 'mysql in running'
+else
+    echo 'mysql has down'
+    echo 'start mysql'
+    service mysqld start
+    result2=$?
+    if [ $result2 -eq 0 ];then
+        echo 'mysql start success'
+    else
+        echo 'mysql start error'
+    fi
+fi
