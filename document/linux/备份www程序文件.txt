@@ -1,0 +1,21 @@
+
+#!/bin/bash
+WWWPATH="/usr/local/www"
+DATAPATH="/usr/local/sbin/data"
+TODAY=`date +%Y%m%d`
+
+for file in ` ls $WWWPATH `; do
+    cd $WWWPATH
+    TARFILE="$file.tar.gz"
+    tar -czvf $TARFILE $file
+    mkdir -p "$DATAPATH/$TODAY"
+    mv $TARFILE "$DATAPATH/$TODAY/$TARFILE"
+done
+
+result=$?
+
+if [ $result -eq 0 ];then
+    echo 'success'
+else
+    echo 'error'
+fi
