@@ -1,0 +1,21 @@
+负载均衡服务器
+
+#add fu zai jun heng
+upstream project.linux.com{
+    server 192.168.36.37:80;
+    server 192.168.36.38:80;
+}
+
+server{
+    listen 80; 
+    server_name project.linux.com;
+    location /{
+        proxy_pass http://project.linux.com;
+        proxy_set_header Host $host;
+        proxy_set_header X_Real_IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }   
+
+}
+
+其他服务器按照正常配置就行。
