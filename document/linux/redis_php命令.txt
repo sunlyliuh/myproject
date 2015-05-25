@@ -1,0 +1,22 @@
+string 最简单的数据类型
+set user:001:name lijie
+set user:001:age 20
+
+hash数据类型 ，可以当作表 hash table 比string速度快
+hset user:001 name lamp age 20
+hset user:002 name ijie age 20
+
+hget user:001 name
+hget user:001
+
+for($i=1; $i<=($redis->get("userid"));$i++{
+    $data[] = $redis->hgetall("user:".$i);
+}
+
+del user:1
+
+list 数据类型 栈 队列
+
+set 数据类型 并集、交集、差集
+
+zset set的升级版，多了一个顺序
