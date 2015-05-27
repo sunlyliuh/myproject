@@ -1,0 +1,11 @@
+有一个表，表里面有字段username,kecheng,fenshu三个字段，一个用户会有多条记录，
+现在需要列出至少有3科分数大于90分的用户的名字及总分
+
+SELECT username, sum( fenshu ) AS score
+FROM user_kecheng
+WHERE (
+fenshu >=90
+)
+GROUP BY username
+HAVING count( id ) >=3
+
