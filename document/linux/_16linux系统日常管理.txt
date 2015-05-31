@@ -1,3 +1,111 @@
 1、监控系统的状态
 w查看当前系统的负载
 >>w
+
+
+load average:后面的三个数值
+第一个代表1分钟内系统的平均负载值
+第二个代表5分钟内系统的平均负载值
+第三个代表15分钟系统的平均负载值
+一般情况下这个值只要不超过服务器的cpu数量就没有关系，如果服务器cup的数量为8，那么这个值若小于8，就说明没有压力。
+
+查看服务器有几个cpu
+>>cat /proc/cpuinfo
+
+查看当前系统有几个cpu
+>>grep -c 'processor' /proc/cpuinfo
+
+查看有几颗物理cpu
+>>grep -c 'physical id' /proc/cpuinfo
+
+2、vmstat 监控系统的状态
+
+
+
+3、top显示进程所占系统资源
+>>top
+
+非动态打印系统资源使用情况
+>>top -bn1
+
+4、sar
+
+5、free查看内存使用状况
+>>free
+
+linux的防火墙
+1、selinux
+一般都把selinux关闭，以免引起不必要的麻烦
+使“SELINUX=disabled"
+>>vim /etc/selinux/config
+保存该配置文件后，重启机器方可生效，临时关闭selinux的命令为
+>>setenforce 0
+
+使用getenforce获得当前selinux的状态
+
+
+
+
+
+
+
+>>getenforce
+
+2、iptables
+iptables的三个表
+filter:这个表用于过滤包用的，是系统预设的表。内建三个链INPUT,OUTPUT以及FORWARD.
+       input作用于进入本机的包；output作用于本机送出的包；forward作用于那些跟本机无关的包。
+nat:主要用处是网络地址交换，也有三个链。prerouting,output,postrouting
+mangle：这个表用户给数据包打标记，然后根据标记去操作哪些包。
+
+
+A.查看规则以及清除规则
+>>iptables -t nat -nvL
+
+-t后面跟表名，-nvL即查看改表的规则，其中-n表示不针对IP反解析主机名，-L表示列出的意思，-V表示列出的信息更加详细。
+
+清除规则的命令中，用的最多的命令
+>>iptables -F
+>>iptables -Z
+不加-t默认是针对表filter来操作的，-F 表示把所有规则全部删除；-Z表示把包以及流量计数器置零
+
+B.增加/删除一条规则
+
+>>iptables -A INPUT -s 10.72.11.12 -p tcp --sport 1234 -d 10.72.137.159 --dport 80 -j DROP
+
+-A/-D :增加删除一条规则
+-I :插入一条规则，其实跟-A效果一样
+-p:指定协议，可以是tcp,udp或者icmp
+--dport:跟-p一起使用，指定目标端口
+--sport:跟-p一起使用，指定源端口
+-s:指定源IP(可以是一个ip段)
+-d:指定目的ip(可以是一个ip段)
+-j:后跟动作，其中ACCEPT表示允许包，DROP表示丢掉包，REJECT 表示拒绝包；
+-i:指定网卡
+
+把来自192.168.1.0/24这个网段的并且作用在eth0上的包放行
+>>iptables -A INPUT -s 192.168.1.0/24 -i eth0 -j ACCEPT
+
+>>iptables -nvL --line-numbers
+
+删除某一条规则使用如下命令
+>>iptables -D INPUT 1
+-D后跟链名，然后是规则num
+
+需求：只针对filter表，预设策略INPUT链DROP，其他两个链ACCEPT，然后针对192.168.137.0/24开通22端口，对所有网段开放80端口，对所有网段开放21端口。
+
+#! /bin/bash
+
+ipt="/sbin/iptables"
+$ipt -F
+$ipt -P INPUT DROP
+$ipt -P OUTPUT ACCEPT
+$ipt -P FORWARD ACCEPT
+$ipt -A INPUT -s 192.168.137.0/24 -p tcp --dport 22 -j ACCEPT
+$ipt -A INPUT -p tcp --dport 80 -j ACCEPT
+$ipt -A INPUT -p tcp --dport 21 -j ACCEPT
+
+备份防火墙
+>>iptables-save > myipt.rule
+恢复规则
+>>iptables-restore < myipt.rule
