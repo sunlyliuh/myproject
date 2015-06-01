@@ -1,0 +1,162 @@
+redis支持的数据类型
+1、字符串
+2、Lists(列表)
+3、Sets(集合)
+4、sorted sets (有序集合)
+5、Hashes(哈希表)
+
+操作redis
+1、插入数据
+>>set name www
+2、查询数据
+>>get name
+3、删除键值
+>>del name
+4、验证键是否存在
+>>exist name
+
+
+1)string类型及操作
+1、set
+设置key对应的值为string类型的value
+>>set name liuhui
+
+2、setnx
+设置key魏颖的值为string类型的value,如果已经存在返回0
+
+3、setex
+设置key对应的值为string类型的value,并指定此键值对应的有效期
+>>setex haircolor 10 red
+
+4、setrange
+>>设置指定key的value值的子字符串
+>>setrange name 8 gmail.com
+
+5、get
+获取key对应的string值，如果不存在返回nil
+
+6、incr
+对key的值做加加操作，并返回新的值，incr一个不存在的key,则设置key为1
+>>set age 20
+>>incr age
+>>get age 
+21
+7、incrby
+同incr类似，加指定值，key不存在时候会设置key
+>>incrby age 5
+>>get age
+26
+
+8、decr 
+对key的值做减减操作，
+>>set age 20
+>>decr age
+19
+
+9、decrby
+同decr ，减指定值
+>>set age 20
+>>descby age 5
+
+10、append
+给指定key的字符串追加value,返回新字符串的长度
+>>set name liuhui
+>>append name @163.com
+14
+>>get name
+liuhui@163.com
+
+2）list
+1、lpush
+在key对应list的头部添加字符串元素
+>>lpush mylist "world"
+>>lpush mylist "hello"
+>>range mylist 0,-1
+"hello","world"
+
+2、rpush
+在key对应list的尾部添加字符串元素
+>>rpush mylist2 "hello"
+>>rpush mylist2 "world"
+>>lrange mylist2 0,-1
+"hello","world"
+
+3、lpop
+从list的头部删除元素，并返回删除元素
+>>lrange mylist2 0 -1
+"hello","world"
+>>lpop mylist2
+"hello"
+>>lrange mylist2 0,-1
+"world"
+
+4、rpop
+从list的尾部删除元素，并返回删除元素
+
+5、llen
+返回key对应list的长度
+>>llen mylist2
+2
+
+3)sets
+
+1、sadd
+向名称为key的set中添加元素
+>>sadd myset "hello"
+(integer)1
+>>sadd myset "world"
+(integer) 1
+>>sadd myset "world"
+(integer) 0
+
+>>smembers myset
+"world" ,"hello"
+
+2、srem
+删除名称为key的set中元素member:
+>>sadd myset2 "one"
+>>sadd myset2 "two"
+>>sadd myset2 "three"
+>>srem myset2 "one"
+(integer) 1
+>>srem myset2 "four"
+(integer) 0
+>>smembers myset2
+"three" ,"two"
+
+3、spop
+随机返回并删除名称为key的set中一个元素
+>>sadd myset2 ”one"
+>>sadd myset2 "two"
+>>sadd myset2 "three"
+>>spop myset2
+"one"
+>>smembers myset2
+"two","three"
+
+4、sdiff
+返回指定key与第一个key的差集
+>>sadd myset3 "one"
+>>sadd myset3 "two"
+>>sadd myset3 "three"
+>>sadd myset4 "one"
+>>sadd myset4 "three"
+>>sadd myset4 "five"
+>>sdiff myset3 myset4
+"two"
+>>sdiff myset4 myset3
+"five"
+
+5、sinter
+返回所有给定key的交集
+>>sdiff myset3 myset4
+"three","one"
+
+6、sunion
+返回所有给定key的并集
+>>smembers myset2
+"three”，“two"
+>>smembers myset3
+"two","one"
+>>sunion myset2 myset3
+"three","one","two"
