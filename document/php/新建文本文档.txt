@@ -19,3 +19,12 @@ echo $a;
 test(); //输出2
 
 test(); //输出3
+
+
+
+有一个类
+class a{
+$a;
+$b;
+
+mysql里面datetime和timestamp的区别
