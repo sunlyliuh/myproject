@@ -31,8 +31,10 @@ mysql里面datetime和timestamp的区别
 
 单点登陆的实现方式，怎么解决跨域问题。
 
-php里面攻击rscf怎么解决
+php里面攻击rscf（扩展请求伪造）怎么解决
 
 memcahce缓存集中命中不了怎么解决
 
 xss是否知道
+
+sql注入
