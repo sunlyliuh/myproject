@@ -31,7 +31,8 @@ mysql里面datetime和timestamp的区别
 
 单点登陆的实现方式，怎么解决跨域问题。
 
-php里面攻击rscf（扩展请求伪造）怎么解决
+php里面攻击rscf（扩展请求伪造）怎么解决  跨站请求伪造   http://www.nowamagic.net/librarys/veda/detail/2006
+xss攻击   http://www.cnblogs.com/bangerlee/archive/2013/04/06/3002142.html
 
 memcahce缓存集中命中不了怎么解决
 
