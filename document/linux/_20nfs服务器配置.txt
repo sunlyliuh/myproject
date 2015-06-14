@@ -1,0 +1,2 @@
+°²×°nfs
+>>yum install -y nfs-utils

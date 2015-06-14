@@ -1,0 +1,2 @@
+// 获取根分区磁盘用掉了%之多少
+df -h|grep sda1 | awk '{print $5}' | cut -d"%" -f 1
