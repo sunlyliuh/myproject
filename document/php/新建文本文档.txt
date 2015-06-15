@@ -51,6 +51,8 @@ sql注入
 
 //猎豹面试
 1、输出上个月的第一天和上个月的最后一天的日期
+echo date('Y-m-01', strtotime('-1 month'));
+echo date('Y-m-t', strtotime('-1 month'));
 
 2、$a=0
 if($a===false){
