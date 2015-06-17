@@ -67,3 +67,19 @@ if($a===false){
 // 57 ,参考鸟哥的博客
 
 4、服务器承受不了连接太多，问题如何解决。说出具体的解决思路，及对应的解决方案。
+
+
+中关村在线
+
+mysql用索引为什么会更快
+mysql用了索引之后orderby为什么会更快
+
+memcache ,redis,mongodb之间的区别及使用场景
+
+mysql的myisam和innode之间的区别，分别适用于什么场景，为什么
+
+sql注入及xss攻击是什么，怎么解决
+
+https长连接是否知道
+
+linux里面的ssh是什么。
