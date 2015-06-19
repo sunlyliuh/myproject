@@ -109,3 +109,18 @@ $ipt -A INPUT -p tcp --dport 21 -j ACCEPT
 >>iptables-save > myipt.rule
 恢复规则
 >>iptables-restore < myipt.rule
+
+
+
+7、netstat查看网络状况
+//打印当前系统启动哪些端口
+>>netstat -lnp
+netstat命令用来打印网络连接状况、系统所开放端口、路由表等信息
+
+// 打印网络连接情况
+>>netstat -an
+
+
+如果您所管理的服务器是一台提供web服务（80端口）的服务器，那么您就可以使用 netstat -an |grep 80 查看当前连接web服务的有哪些IP了。
+>>netstat -an | grep 80
+
