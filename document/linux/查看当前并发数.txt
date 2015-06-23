@@ -1,4 +1,6 @@
 netstat -nat|grep ESTABLISHED|wc -l
+或者
+netstat -nat|grep 80|wc -l
 
 这样就可以得到具体的并发数了。
 如果想查看到以前的历史并发数，需要写对应的shell脚本将数据保存到文件或者数据库中。
