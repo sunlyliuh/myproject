@@ -4,7 +4,7 @@ php5.2,5.3,5.5之间的区别   http://www.open-open.com/lib/view/open1411614082000.h
 实时查看负载情况   top
 查看进程命令       ps aux|grep nginx
 
-mysql主从同步的机制  binlog
+mysql主从同步的机制  binlog 详细的理解
 nginx与php之间是通过什么进行交互的?  php-fpm,他的运行方式是怎样的
 
 服务器报502，怎么解决
