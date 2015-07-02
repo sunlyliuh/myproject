@@ -6,6 +6,7 @@ php5.2,5.3,5.5之间的区别   http://www.open-open.com/lib/view/open1411614082000.h
 
 mysql主从同步的机制  binlog 详细的理解
 nginx与php之间是通过什么进行交互的?  php-fpm,他的运行方式是怎样的
+答案：http://www.tuicool.com/articles/Ir2AreE
 
 服务器报502，怎么解决
 答案：http://my.oschina.net/junn/blog/147923
