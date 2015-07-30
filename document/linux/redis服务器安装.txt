@@ -1,44 +1,44 @@
-redis°²×°
-ÏÂÔØredis
+rediså®‰è£…
+ä¸‹è½½redis
 >>wget http://download.redis.io/releases/redis-2.8.3.tar.gz
 >>tar xzf redis-2.8.3.tar.gz
 >>cd redis-2.8.3
 >>make
 
-ÔÚ½øĞĞmakeµÄÊ±ºò±¨´í
+åœ¨è¿›è¡Œmakeçš„æ—¶å€™æŠ¥é”™
 /usr/local/src/redis-2.8.3/src/zmalloc.c:223: undefined reference to `__sync_add_and_fetch_4'
-ÊÇÒòÎªlinuxÊÇ32Î»µÄ£¬½â¾ö·½°¸ÈçÏÂ
+æ˜¯å› ä¸ºlinuxæ˜¯32ä½çš„ï¼Œè§£å†³æ–¹æ¡ˆå¦‚ä¸‹
 >>make CFLAGS="-march=i686"
 
 
->>src/redis-server      #Æô¶¯²¢ÔËĞĞredis
+>>src/redis-server      #å¯åŠ¨å¹¶è¿è¡Œredis
 
-²âÊÔÊÇ·ñÆô¶¯³É¹¦
+æµ‹è¯•æ˜¯å¦å¯åŠ¨æˆåŠŸ
 >>src/redis-cli
 >>set username liuhui
 >>get username
 
-ÕâÑù°²×°¿Ï¶¨²»ĞĞ£¬ÎÒÃÇĞèÒª¶Ôredis½øĞĞÏµÍ³µÄ¹ÜÀí£¬Ôö¼Ó¿ª»úÆô¶¯µÈ
+è¿™æ ·å®‰è£…è‚¯å®šä¸è¡Œï¼Œæˆ‘ä»¬éœ€è¦å¯¹redisè¿›è¡Œç³»ç»Ÿçš„ç®¡ç†ï¼Œå¢åŠ å¼€æœºå¯åŠ¨ç­‰
 
 >>cd src
 >>mv redis-2.8.3 redis
 >>mv redis /usr/local/redis
 >>cd /usr/local/redis
 
-°Ñredis×÷Îªlinux·şÎñ¿ª»úÆô¶¯
+æŠŠredisä½œä¸ºlinuxæœåŠ¡å¼€æœºå¯åŠ¨
 >>cp redis.conf /etc/
 >>vim /etc/redis.conf
-ĞŞ¸Ädaemonize=yes
+ä¿®æ”¹daemonize=yes
 >>vim /etc/rc.local
-ÔÚÏÂÃæ¼ÓÈëÒ»Ñù´úÂë
+åœ¨ä¸‹é¢åŠ å…¥ä¸€æ ·ä»£ç 
 >>/usr/local/redis/src/redis-server /etc/redis.conf
-±à¼­Íê±£´æ¾ÍokÁË
+ç¼–è¾‘å®Œä¿å­˜å°±okäº†
 
 
 
 
-2¡¢°²×°phpµÄredisÀ©Õ¹
-ÏÂÔØredis
+2ã€å®‰è£…phpçš„redisæ‰©å±•
+ä¸‹è½½redis
 >>wget https://github.com/nicolasff/phpredis/archive/2.2.4.tar.gz
 >>tar -zxvf 2.2.4.tar.gz
 >>cd phpredis-2.2.4
@@ -47,24 +47,24 @@ redis°²×°
 >>make
 >>make install
 
-°²×°Íê³ÉÖ®ºó£¬³öÏÖÏÂÃæµÄ°²×°Â·¾¶
+å®‰è£…å®Œæˆä¹‹åï¼Œå‡ºç°ä¸‹é¢çš„å®‰è£…è·¯å¾„
 
 /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/
 
-ÅäÖÃphpÖ§³Ö
+é…ç½®phpæ”¯æŒ
 vim /usr/local/php/etc/php.ini
-Ìí¼Ó
+æ·»åŠ 
 extension="redis.so"
-ĞèÒª½«redis.so¿½±´µ½/usr/local/php/ext/Ä¿Â¼
+éœ€è¦å°†redis.soæ‹·è´åˆ°/usr/local/php/ext/ç›®å½•
 >>cp redis.so /usr/local/php/ext
-²é¿´redisÀ©Õ¹ÊÇ·ñ°²×°ÉÏÁË
+æŸ¥çœ‹redisæ‰©å±•æ˜¯å¦å®‰è£…ä¸Šäº†
 >>/usr/local/php/bin/php -m
 
-ĞèÒªÖØÆôphp
+éœ€è¦é‡å¯php
 >>service php-fpm restart
 >>service nginx restart
 
-php²âÊÔ´úÂë
+phpæµ‹è¯•ä»£ç 
 $redis= new Redis();
 $redis->connect('127.0.0.1',6379);
 $redis->set('name','liuhui');

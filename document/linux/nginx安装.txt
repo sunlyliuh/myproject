@@ -1,4 +1,15 @@
 nginx 安装
+
+关闭selinux
+修改/etc/selinux/config文件中的 SELINUX=disabled
+安装需要支持的软件：
+yum install libxml2 libxml2-devel gcc libtool-ltdl-devel openssl openssl-devel curl curl-devel
+libjpeg libjpeg-devel libpng libpng-devel libpng libpng-devel freetype-devel ncurses ncurses-devel 
+libevent libevent-devel libmcrypt-devel mysql-devel
+
+
+export LDFLAGS=-L/usr/lib64/mysql 
+
 下载nginx
 
 wget  http://nginx.org/download/nginx-0.8.54.tar.gz  
