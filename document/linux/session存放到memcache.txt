@@ -1,13 +1,13 @@
-�޸�php.ini�����ļ�
+修改php.ini配置文件
 session.save_handler = memcache
 session.save_path = "tcp://192.168.36.139:12000"
 
-������ŵ����memcache����������������
+如果想存放到多个memcache服务器，可以这样
 
 session.save_path = "tcp://192.168.36.139:12000,tcp://192.168.36.138:12000";
 
-���Դ��룺
-ͬһ���û�����������з��ʵ�ʱ�����ɵ�session_id��Ψһ�ģ�����仯��
+测试代码：
+同一个用户再浏览器进行访问的时候，生成的session_id是唯一的，不会变化。
 session.php
 
 <?php
@@ -47,4 +47,4 @@ var_dump($svalue);
 ?>
 
 
-ʹ��������ƾͿ���ʵ�ָ��ؾ������û��ĵ�½���⡣
+使用这个机制就可以实现负载均衡下用户的登陆问题。
