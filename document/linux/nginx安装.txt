@@ -60,3 +60,8 @@ kill -HUP `cat /usr/local/nginx/logs/nginx.pid`
 
 停止nginx
 kill  `cat /usr/local/nginx/logs/nginx.pid`  
+
+
+linux64位系统安装出现这个错误的时候可以加入这行代码
+编译安装PHP出现configure: error: MySQL configure failed. Please check config.log的解决方法 ?
+>>export LDFLAGS=-L/usr/lib64/mysql
