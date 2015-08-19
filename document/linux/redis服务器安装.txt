@@ -1,4 +1,4 @@
-redis安装
+﻿redis安装
 下载redis
 >>wget http://download.redis.io/releases/redis-2.8.3.tar.gz
 >>tar xzf redis-2.8.3.tar.gz
