@@ -1,88 +1,88 @@
-redisÖ§³ÖµÄÊý¾ÝÀàÐÍ
-1¡¢×Ö·û´®
-2¡¢Lists(ÁÐ±í)
-3¡¢Sets(¼¯ºÏ)
-4¡¢sorted sets (ÓÐÐò¼¯ºÏ)
-5¡¢Hashes(¹þÏ£±í)
+redisæ”¯æŒçš„æ•°æ®ç±»åž‹
+1ã€å­—ç¬¦ä¸²
+2ã€Lists(åˆ—è¡¨)
+3ã€Sets(é›†åˆ)
+4ã€sorted sets (æœ‰åºé›†åˆ)
+5ã€Hashes(å“ˆå¸Œè¡¨)
 
-²Ù×÷redis
-1¡¢²åÈëÊý¾Ý
+æ“ä½œredis
+1ã€æ’å…¥æ•°æ®
 >>set name www
-2¡¢²éÑ¯Êý¾Ý
+2ã€æŸ¥è¯¢æ•°æ®
 >>get name
-3¡¢É¾³ý¼üÖµ
+3ã€åˆ é™¤é”®å€¼
 >>del name
-4¡¢ÑéÖ¤¼üÊÇ·ñ´æÔÚ
+4ã€éªŒè¯é”®æ˜¯å¦å­˜åœ¨
 >>exist name
 
 
-1)stringÀàÐÍ¼°²Ù×÷
-1¡¢set
-ÉèÖÃkey¶ÔÓ¦µÄÖµÎªstringÀàÐÍµÄvalue
+1)stringç±»åž‹åŠæ“ä½œ
+1ã€set
+è®¾ç½®keyå¯¹åº”çš„å€¼ä¸ºstringç±»åž‹çš„value
 >>set name liuhui
 
-2¡¢setnx
-ÉèÖÃkeyÎºÓ±µÄÖµÎªstringÀàÐÍµÄvalue,Èç¹ûÒÑ¾­´æÔÚ·µ»Ø0
+2ã€setnx
+è®¾ç½®keyé­é¢–çš„å€¼ä¸ºstringç±»åž‹çš„value,å¦‚æžœå·²ç»å­˜åœ¨è¿”å›ž0
 
-3¡¢setex
-ÉèÖÃkey¶ÔÓ¦µÄÖµÎªstringÀàÐÍµÄvalue,²¢Ö¸¶¨´Ë¼üÖµ¶ÔÓ¦µÄÓÐÐ§ÆÚ
+3ã€setex
+è®¾ç½®keyå¯¹åº”çš„å€¼ä¸ºstringç±»åž‹çš„value,å¹¶æŒ‡å®šæ­¤é”®å€¼å¯¹åº”çš„æœ‰æ•ˆæœŸ
 >>setex haircolor 10 red
 
-4¡¢setrange
->>ÉèÖÃÖ¸¶¨keyµÄvalueÖµµÄ×Ó×Ö·û´®
+4ã€setrange
+>>è®¾ç½®æŒ‡å®škeyçš„valueå€¼çš„å­å­—ç¬¦ä¸²
 >>setrange name 8 gmail.com
 
-5¡¢get
-»ñÈ¡key¶ÔÓ¦µÄstringÖµ£¬Èç¹û²»´æÔÚ·µ»Ønil
+5ã€get
+èŽ·å–keyå¯¹åº”çš„stringå€¼ï¼Œå¦‚æžœä¸å­˜åœ¨è¿”å›žnil
 
-6¡¢incr
-¶ÔkeyµÄÖµ×ö¼Ó¼Ó²Ù×÷£¬²¢·µ»ØÐÂµÄÖµ£¬incrÒ»¸ö²»´æÔÚµÄkey,ÔòÉèÖÃkeyÎª1
+6ã€incr
+å¯¹keyçš„å€¼åšåŠ åŠ æ“ä½œï¼Œå¹¶è¿”å›žæ–°çš„å€¼ï¼Œincrä¸€ä¸ªä¸å­˜åœ¨çš„key,åˆ™è®¾ç½®keyä¸º1
 >>set age 20
 >>incr age
 >>get age 
 21
-7¡¢incrby
-Í¬incrÀàËÆ£¬¼ÓÖ¸¶¨Öµ£¬key²»´æÔÚÊ±ºò»áÉèÖÃkey
+7ã€incrby
+åŒincrç±»ä¼¼ï¼ŒåŠ æŒ‡å®šå€¼ï¼Œkeyä¸å­˜åœ¨æ—¶å€™ä¼šè®¾ç½®key
 >>incrby age 5
 >>get age
 26
 
-8¡¢decr 
-¶ÔkeyµÄÖµ×ö¼õ¼õ²Ù×÷£¬
+8ã€decr 
+å¯¹keyçš„å€¼åšå‡å‡æ“ä½œï¼Œ
 >>set age 20
 >>decr age
 19
 
-9¡¢decrby
-Í¬decr £¬¼õÖ¸¶¨Öµ
+9ã€decrby
+åŒdecr ï¼Œå‡æŒ‡å®šå€¼
 >>set age 20
 >>descby age 5
 
-10¡¢append
-¸øÖ¸¶¨keyµÄ×Ö·û´®×·¼Óvalue,·µ»ØÐÂ×Ö·û´®µÄ³¤¶È
+10ã€append
+ç»™æŒ‡å®škeyçš„å­—ç¬¦ä¸²è¿½åŠ value,è¿”å›žæ–°å­—ç¬¦ä¸²çš„é•¿åº¦
 >>set name liuhui
 >>append name @163.com
 14
 >>get name
 liuhui@163.com
 
-2£©list
-1¡¢lpush
-ÔÚkey¶ÔÓ¦listµÄÍ·²¿Ìí¼Ó×Ö·û´®ÔªËØ
+2ï¼‰list
+1ã€lpush
+åœ¨keyå¯¹åº”listçš„å¤´éƒ¨æ·»åŠ å­—ç¬¦ä¸²å…ƒç´ 
 >>lpush mylist "world"
 >>lpush mylist "hello"
 >>range mylist 0,-1
 "hello","world"
 
-2¡¢rpush
-ÔÚkey¶ÔÓ¦listµÄÎ²²¿Ìí¼Ó×Ö·û´®ÔªËØ
+2ã€rpush
+åœ¨keyå¯¹åº”listçš„å°¾éƒ¨æ·»åŠ å­—ç¬¦ä¸²å…ƒç´ 
 >>rpush mylist2 "hello"
 >>rpush mylist2 "world"
 >>lrange mylist2 0,-1
 "hello","world"
 
-3¡¢lpop
-´ÓlistµÄÍ·²¿É¾³ýÔªËØ£¬²¢·µ»ØÉ¾³ýÔªËØ
+3ã€lpop
+ä»Žlistçš„å¤´éƒ¨åˆ é™¤å…ƒç´ ï¼Œå¹¶è¿”å›žåˆ é™¤å…ƒç´ 
 >>lrange mylist2 0 -1
 "hello","world"
 >>lpop mylist2
@@ -90,18 +90,18 @@ liuhui@163.com
 >>lrange mylist2 0,-1
 "world"
 
-4¡¢rpop
-´ÓlistµÄÎ²²¿É¾³ýÔªËØ£¬²¢·µ»ØÉ¾³ýÔªËØ
+4ã€rpop
+ä»Žlistçš„å°¾éƒ¨åˆ é™¤å…ƒç´ ï¼Œå¹¶è¿”å›žåˆ é™¤å…ƒç´ 
 
-5¡¢llen
-·µ»Økey¶ÔÓ¦listµÄ³¤¶È
+5ã€llen
+è¿”å›žkeyå¯¹åº”listçš„é•¿åº¦
 >>llen mylist2
 2
 
 3)sets
 
-1¡¢sadd
-ÏòÃû³ÆÎªkeyµÄsetÖÐÌí¼ÓÔªËØ
+1ã€sadd
+å‘åç§°ä¸ºkeyçš„setä¸­æ·»åŠ å…ƒç´ 
 >>sadd myset "hello"
 (integer)1
 >>sadd myset "world"
@@ -112,8 +112,8 @@ liuhui@163.com
 >>smembers myset
 "world" ,"hello"
 
-2¡¢srem
-É¾³ýÃû³ÆÎªkeyµÄsetÖÐÔªËØmember:
+2ã€srem
+åˆ é™¤åç§°ä¸ºkeyçš„setä¸­å…ƒç´ member:
 >>sadd myset2 "one"
 >>sadd myset2 "two"
 >>sadd myset2 "three"
@@ -124,9 +124,9 @@ liuhui@163.com
 >>smembers myset2
 "three" ,"two"
 
-3¡¢spop
-Ëæ»ú·µ»Ø²¢É¾³ýÃû³ÆÎªkeyµÄsetÖÐÒ»¸öÔªËØ
->>sadd myset2 ¡±one"
+3ã€spop
+éšæœºè¿”å›žå¹¶åˆ é™¤åç§°ä¸ºkeyçš„setä¸­ä¸€ä¸ªå…ƒç´ 
+>>sadd myset2 â€one"
 >>sadd myset2 "two"
 >>sadd myset2 "three"
 >>spop myset2
@@ -134,8 +134,8 @@ liuhui@163.com
 >>smembers myset2
 "two","three"
 
-4¡¢sdiff
-·µ»ØÖ¸¶¨keyÓëµÚÒ»¸ökeyµÄ²î¼¯
+4ã€sdiff
+è¿”å›žæŒ‡å®škeyä¸Žç¬¬ä¸€ä¸ªkeyçš„å·®é›†
 >>sadd myset3 "one"
 >>sadd myset3 "two"
 >>sadd myset3 "three"
@@ -147,15 +147,15 @@ liuhui@163.com
 >>sdiff myset4 myset3
 "five"
 
-5¡¢sinter
-·µ»ØËùÓÐ¸ø¶¨keyµÄ½»¼¯
+5ã€sinter
+è¿”å›žæ‰€æœ‰ç»™å®škeyçš„äº¤é›†
 >>sdiff myset3 myset4
 "three","one"
 
-6¡¢sunion
-·µ»ØËùÓÐ¸ø¶¨keyµÄ²¢¼¯
+6ã€sunion
+è¿”å›žæ‰€æœ‰ç»™å®škeyçš„å¹¶é›†
 >>smembers myset2
-"three¡±£¬¡°two"
+"threeâ€ï¼Œâ€œtwo"
 >>smembers myset3
 "two","one"
 >>sunion myset2 myset3
