@@ -1,0 +1,112 @@
+配置svn在后台一直启动
+>>vim /etc/rc.local
+在下面加入一样代码
+>>svnserve -d -r /home/svn
+
+我们在开发的过程将代码提交到SVN后使用SVN的hook，通过post-commit脚本，在目标文件夹根下执行svn update操作，将更新内容同步到测试环境，这样开发调试非常方便。
+
+现在SVN库的文件数量越来越多，svn 本地的目录已经3个多G了，几十万个文件，在目标文件夹下执行svn update进行更新速度也就越来越慢了，常常提交之后SVN客户端会等几分钟没有响应，在没有响应的时间内，无法再继续提交内容。如果使用zendstudio进行提交的话，所有保存的操作都要等这个SVN提交完成才能继续。
+
+原post-commit内容：
+--------------------------------------------
+#!/bin/sh
+
+REPOS="$1"
+REV="$2"
+WEB=/data/web
+FRAMEWORK=/data/framework
+export LC_ALL=zh_CN.UTF-8
+a=`svn update $WEB $FRAMEWORK /data/conf /data/shell --username x*******i --password ******* | grep 'nginx\.conf'`
+if [ -n "$a" ]
+then
+   kill -HUP `cat /dev/shm/nginx.pid`
+fi
+chown -R www.www $WEB &
+-----------------------------------------------
+我们主要做了以下几个工作：
+1、SVN更新后，同步在/data/web、/data/framework、/data/conf、 /data/shell 4个文件夹在下执行svn update命令进行同步更新操作。
+2、如果/data/conf/nginx.conf文件修改了，那么重启nginx。
+3、将所有/data/web目录下的文件所有者和组都变成www。
+
+原因在于：
+1、提交的SVN的时候，4个文件在根下进行更新，文件数量巨大响应非常慢。
+2、chown的操作也是比较浪费。
+
+解决的想法：
+对有变化的文件进行 svn update 这样更有效率。
+
+解决的思路：
+1、得到本次提交更新的文件。
+2、在目标目录中更新指定的文件。
+3、同时将指定文件所有者和组变成www。
+4、使用PHP程序当shell来完成这样的工作。
+
+最后的成果是巨大的，现在svn提交已经是飞一样的快了，要知道svn 本地的目录已经3个多G了，几十万个文件。
+
+实现步骤：
+1、得到更新的文件。
+通过分析我们发现post-commit脚本有两个变量
+# 库的路径
+REPOS="$1"
+# 新提交的版本号
+REV="$2"
+
+通过这样的操作就可以得到本次更新的内容与文件。
+changed=$(svnlook changed -r $REV $REPOS)
+
+2、将得到的本次更新的内容提交给PHP脚本来处理，分析哪些文件发生变化。
+/usr/local/php/bin/php-cgi -q /data/shell/svn_post_commit_resources.php "$changed" &
+用PHP分析出哪些文件发生变化后，构造shell命令，由PHP调用shell命令进行更新。
+
+3、相关脚本：
+最新的post-commit文件内容：
+-------------------------------------
+#!/bin/sh
+
+# 库的路径
+REPOS="$1"
+# 新提交的版本号
+REV="$2"
+
+WEB=/data/web
+FRAMEWORK=/data/framework
+export LC_ALL=zh_CN.UTF-8
+
+changed=$(svnlook changed -r $REV $REPOS)
+log=$(svnlook log -r $REV $REPOS)
+n=$'\n'
+
+/usr/local/php/bin/php-cgi -q /data/shell/svn_post_commit_resources.php "$changed" &
+--------------------------------------
+
+处理更新内容，执行更新命令的PHP脚本文件 svn_post_commit_resources.php 的内容：
+-----------------------------------------
+<?php 
+$files = explode("\n", $argv[1]);
+if (!is_array($files)) {$files=(array)$files;};
+
+foreach ($files as $v)
+{
+       // 取文件名
+       $f_tem = trim(substr($v, 2));
+       // 取最顶层目录名
+       $d_tem = substr($f_tem, 0, strpos($f_tem, '/'));
+       if (!in_array($d_tem, array('web', 'framework', 'conf', 'shell'))) {
+               continue;
+       }
+
+       // SVN copy 对应的文件
+       $f_name = '/data/' . $f_tem;
+       $cmd = "svn update '$f_name' --username x****i --password K****$;chown www.www '$f_name'";
+
+       exec($cmd);
+       if (strpos($f_tem, 'nginx.conf')) {
+               exec("kill -HUP `cat /dev/shm/nginx.pid`");
+       }
+}
+exit();
+?>
+
+显示最近修改文件的修改人，修改时间
+svn list -v svn://192.168.0.34/gteacher/client/bbb.txt
+      6 liuhui             15 Sep 21 04:25 bbb.txt
