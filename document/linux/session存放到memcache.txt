@@ -1,3 +1,5 @@
+﻿
+memcache默认端口11211
 修改php.ini配置文件
 session.save_handler = memcache
 session.save_path = "tcp://192.168.36.139:12000"

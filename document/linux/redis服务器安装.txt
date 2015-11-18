@@ -1,4 +1,6 @@
-﻿redis安装
+﻿redis默认端口：6379
+
+redis安装
 下载redis
 >>wget http://download.redis.io/releases/redis-2.8.3.tar.gz
 >>tar xzf redis-2.8.3.tar.gz
