@@ -1,0 +1,47 @@
+php方面
+1.数据算法
+2.程序优化方面
+3.主流框架的优缺点
+4.php新版本的特性
+5.php的扩展
+
+mysql方面
+1.mysql的优化
+    存储引擎
+    建表结构
+    sql优化
+    索引优化
+2.mysql的总从机制及配置
+    主从机制binglog原理分析
+    如何进行主从配置
+3.mysql分库分表
+    常规的取%分表
+    不常规的用户和商铺看到的订单分库分表设计
+
+linux方面
+1.基本命令
+    tar ps w top du df find grep 
+2.shell脚本
+    mysql监控及报警
+    php进程监控及报警
+    磁盘容量报警
+    重要文件的备份
+    
+3.svn的配置及权限管理
+
+nginx
+1.nginx与php运行的机制
+    fastcgi原理分析
+2.nginx的负载均衡
+    upstream的配置
+3.nginx的扩展
+
+缓存方面（memcache、redis）
+
+1.memcache与redis的使用场景
+2.memcache与redis的区别
+3.redis里面保存在硬盘的时候有哪几种方式
+
+服务器架构方面
+1.高并发高访问量的情况的处理方式
+2.千万级网站的架构设计，亿万级网站的机构设计
