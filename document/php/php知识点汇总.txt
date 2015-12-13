@@ -1,97 +1,106 @@
-php·½Ãæ
-1.Êý¾ÝËã·¨
-  Ã°ÅÝÅÅÐò£¬¿ìËÙÅÅÐò
-2.³ÌÐòÓÅ»¯·½Ãæ
-   Ê¹ÓÃunsetÉ¾³ý´òµÄ±äÁ¿£¬ÔÚÑ­»·Ö®Ç°ÏÈ¼ÆËã×ÜÊý
-3.Ö÷Á÷¿ò¼ÜµÄÓÅÈ±µã
-4.phpÐÂ°æ±¾µÄÌØÐÔ
-5.phpµÄÀ©Õ¹
-6.ÍøÕ¾°²È«
-    xss£¨×ªÒåÌØÊâhtml×Ö·û< >£©
-    sql×¢Èë£¨sqlÔ¤°ó¶¨,×ªÒå£©
-    csrf£¨¼Ótoken·½Ê½£¬»òÔòÌí¼ÓÑéÖ¤Âë£©
-    Í¨ÐÅ°²È«¼°Êý¾Ý´Û¸Ä£¨Êý¾ÝÇ©Ãû·½Ê½£¬¾ßÌåµÄËã·¨ÐèÒªÁË½â£©
-7.phpµÄÉè¼ÆÄ£Ê½
-  µ¥Àý£¬¹¤³§£¬¹Û²ìÕß
-8.ÆäËû×¢ÒâÊÂÏî
-   phpÄÚglobalÓë&globalµÄÇø±ð
-   staticµÄÊ¹ÓÃ
-9.ËÑË÷ÒýÇæ½Ó´¥¹ýÄÄ¼¸ÖÖ£¬ËûÃÇµÄÔËÐÐ»úÖÆÊÇÊ²Ã´
-  ËÑË÷ÒýÇæÀïÃæµÄÄÚ²¿»úÖÆ£¨ÔöÁ¿Ë÷Òý£¬É¾³ýË÷Òý£¬¸üÐÂË÷Òý£©
+phpæ–¹é¢
+1.æ•°æ®ç®—æ³•
+  å†’æ³¡æŽ’åºï¼Œå¿«é€ŸæŽ’åº
+2.ç¨‹åºä¼˜åŒ–æ–¹é¢
+   ä½¿ç”¨unsetåˆ é™¤æ‰“çš„å˜é‡ï¼Œåœ¨å¾ªçŽ¯ä¹‹å‰å…ˆè®¡ç®—æ€»æ•°
+3.ä¸»æµæ¡†æž¶çš„ä¼˜ç¼ºç‚¹
+4.phpæ–°ç‰ˆæœ¬çš„ç‰¹æ€§
+5.phpçš„æ‰©å±•
+6.ç½‘ç«™å®‰å…¨
+    xssï¼ˆè½¬ä¹‰ç‰¹æ®Šhtmlå­—ç¬¦< >ï¼‰
+    sqlæ³¨å…¥ï¼ˆsqlé¢„ç»‘å®š,è½¬ä¹‰ï¼‰
+    csrfï¼ˆåŠ tokenæ–¹å¼ï¼Œæˆ–åˆ™æ·»åŠ éªŒè¯ç ï¼‰
+    é€šä¿¡å®‰å…¨åŠæ•°æ®ç¯¡æ”¹ï¼ˆæ•°æ®ç­¾åæ–¹å¼ï¼Œå…·ä½“çš„ç®—æ³•éœ€è¦äº†è§£ï¼‰
+7.phpçš„è®¾è®¡æ¨¡å¼
+  å•ä¾‹ï¼Œå·¥åŽ‚ï¼Œè§‚å¯Ÿè€…
+8.å…¶ä»–æ³¨æ„äº‹é¡¹
+   phpå†…globalä¸Ž&globalçš„åŒºåˆ«
+   staticçš„ä½¿ç”¨
+9.æœç´¢å¼•æ“ŽæŽ¥è§¦è¿‡å“ªå‡ ç§ï¼Œä»–ä»¬çš„è¿è¡Œæœºåˆ¶æ˜¯ä»€ä¹ˆ
+  æœç´¢å¼•æ“Žé‡Œé¢çš„å†…éƒ¨æœºåˆ¶ï¼ˆå¢žé‡ç´¢å¼•ï¼Œåˆ é™¤ç´¢å¼•ï¼Œæ›´æ–°ç´¢å¼•ï¼‰
    lucense,sphinx,solr
 
-mysql·½Ãæ
-1.mysqlµÄÓÅ»¯
-    ´æ´¢ÒýÇæ£¨myisam,innodb,memory´æ´¢ÒýÇæ£©
-         myisamÌØµã£º¶ÁÈ¡Êý¾Ý¿ì£¬±í¼¶Ëø
-         innodbÌØµã£ºÖ§³ÖÊÂÎï£¬Ö§³ÖÐÐ¼¶Ëø¿ÉÒÔ³ÐÊÜ¸ß²¢·¢£¨ºÜ¶àÈËÒÔÎªInnodbÊÇÐÐ¼¶Ëø£¬ÄÇ¸öÖ»ÊÇwhere¶ÔËüÖ÷¼üÊÇÓÐÐ§£¬·ÇÖ÷¼üµÄ¶¼»áËøÈ«±íµÄ¡££©
-         memoryÌØµã£ºËùÓÐÊý¾Ý¶¼´æ·ÅÔÚÄÚ´æÖÐ£¬²»»á½«ÈÎºÎÊý¾Ý´æ·Åµ½´ÅÅÌÉÏ£¬ÔÚ´ÅÅÌÉÏ½ö½ö´æ·ÅÁË±í½á¹¹Ïà¹ØÐÅÏ¢µÄ.frmÎÄ¼þ£¬ÊµÏÖÒ³¼¶Ëø¶¨
-    ½¨±í½á¹¹
-        a.Ê¹ÓÃ×îºÏÊÊµÄ×Ö¶ÎÀàÐÍ£¬ÄÜÓÃÐ¡µÄ×Ö½ÚÀàÐÍ¾¡Á¿ÓÃÐ¡µÄ£¬ÀýÈçÄÜ´æ·Å×´Ì¬µÄ×Ö¶Î£¬²»ÒªÓÃint¿ÉÒÔÓÃtinyint,ÄÜÓÃvarcharµÄ²»ÓÃtext
-        b.¾¡¿ÉÄÜµÄ½«×Ö¶ÎÉèÖÃÎªnot null
-        c.Ìí¼ÓË÷Òý
-        À©Õ¹int(3)Óëint(11)µÄÇø±ð£¬datetimeÓëtimestampµÄÇø±ð
-    sqlÓÅ»¯
-        a.µ±Ö»ÐèÒª²éÑ¯Ò»ÌõÊ±Ê¹ÓÃlimit1
-        b.Ç§Íò²»ÒªÊ¹ÓÃorder by rand()À´»ñÈ¡Ëæ»úµÄÐÐ
-        c.±ÜÃâselect * ²Ù×÷£¬Ö»²éÑ¯×Ô¼ºÐèÒªµÄ×Ö¶Î
-        d.¾¡¿ÉÄÜÔÚË÷ÒýÖÐÍê³ÉÅÅÐò
-        e.ÓÀÔ¶ÓÃÐ¡µÄ½á¹û¼¯Çý¶¯´óµÄ½á¹û¼¯
-        f.¾¡¿ÉÄÜ±ÜÃâ¸´ÔÓµÄjoinºÍ×Ó²éÑ¯
-        g.´ÓexplainÈëÊÖ
-        h.¶àÊ¹ÓÃprofile
-    Ë÷ÒýÓÅ»¯
-        a.Îª½ÏÆµ·±µÄ×÷Îª²éÑ¯Ìõ¼þµÄ×Ö¶Î½¨Á¢Ë÷Òý
-        b.Î¨Ò»ÐÔÌ«²îµÄ×Ö¶Î²»ÊÊºÏµ¥¶À´´½¨Ë÷Òý£¬±ÈÈç×´Ì¬×Ö¶Î£¬ÀàÐÍ×Ö¶Î
-        c.blogºÍtextÀàÐÍµÄÁÐÖ»ÄÜ´´½¨Ç°×ºË÷Òý
-        d.Ê¹ÓÃ!=ºÍnot in µÄÊ¹ÓÃ£¬mysqlÎÞ·¨Ê¹ÓÃË÷Òý
-        e.¹ýÂË×Ö¶ÎÊ¹ÓÃÁËº¯ÊýÔËËã£¬Èçabs(column£©,mysqlÎÞ·¨Ê¹ÓÃË÷Òý
-        f.joinÓï¾äÖÐjoinÌõ¼þ×Ö¶ÎÀàÐÍ²»Ò»ÖÂµÄÊ±ºò£¬mysqlÎÞ·¨Ë÷Òý
-        g.Ê¹ÓÃlikeµÄÊ±ºò£¬Èç¹ûÌõ¼þÍ¨Åä·ûÒÔ%¿ªÍ·£¬mysqlÎÞ·¨Ê¹ÓÃË÷Òý
-        À©Õ¹Ë÷ÒýµÄÖÖÀà£¨Ö÷¼üË÷Òý£¬ÆÕÍ¨Ë÷Òý£¬Î¨Ò»Ë÷Òý£¬ÁªºÏË÷Òý£¬È«ÎÄË÷Òý£©
-        ÁªºÏË÷Òý±ÈÈç´´½¨µÄË÷ÒýÊÇ£¨a,b,c£©£¬Ö»ÓÐÔÚ²éÑ¯µÄÊ±ºòa,ab,ac,abcÕâÈýÖÖÊ±ºò²Å»áÓÃµ½Ë÷Òý£¬where ºóÃæµÄ²éÑ¯×Ö¶ÎË³Ðò²»Ó°Ïì£¬¿ÉÒÔÊÇcab,cba£¬bcaµÈ£¬¹Ø¼üÊÇ±ØÐëÒªÓÐaÕâ¸ö²éÑ¯×Ö¶Î¡£
+mysqlæ–¹é¢
+1.mysqlçš„ä¼˜åŒ–
+    å­˜å‚¨å¼•æ“Žï¼ˆmyisam,innodb,memoryå­˜å‚¨å¼•æ“Žï¼‰
+         myisamç‰¹ç‚¹ï¼šè¯»å–æ•°æ®å¿«ï¼Œè¡¨çº§é”
+         innodbç‰¹ç‚¹ï¼šæ”¯æŒäº‹ç‰©ï¼Œæ”¯æŒè¡Œçº§é”å¯ä»¥æ‰¿å—é«˜å¹¶å‘ï¼ˆå¾ˆå¤šäººä»¥ä¸ºInnodbæ˜¯è¡Œçº§é”ï¼Œé‚£ä¸ªåªæ˜¯whereå¯¹å®ƒä¸»é”®æ˜¯æœ‰æ•ˆï¼Œéžä¸»é”®çš„éƒ½ä¼šé”å…¨è¡¨çš„ã€‚ï¼‰
+         memoryç‰¹ç‚¹ï¼šæ‰€æœ‰æ•°æ®éƒ½å­˜æ”¾åœ¨å†…å­˜ä¸­ï¼Œä¸ä¼šå°†ä»»ä½•æ•°æ®å­˜æ”¾åˆ°ç£ç›˜ä¸Šï¼Œåœ¨ç£ç›˜ä¸Šä»…ä»…å­˜æ”¾äº†è¡¨ç»“æž„ç›¸å…³ä¿¡æ¯çš„.frmæ–‡ä»¶ï¼Œå®žçŽ°é¡µçº§é”å®š
+    å»ºè¡¨ç»“æž„
+        a.ä½¿ç”¨æœ€åˆé€‚çš„å­—æ®µç±»åž‹ï¼Œèƒ½ç”¨å°çš„å­—èŠ‚ç±»åž‹å°½é‡ç”¨å°çš„ï¼Œä¾‹å¦‚èƒ½å­˜æ”¾çŠ¶æ€çš„å­—æ®µï¼Œä¸è¦ç”¨intå¯ä»¥ç”¨tinyint,èƒ½ç”¨varcharçš„ä¸ç”¨text
+        b.å°½å¯èƒ½çš„å°†å­—æ®µè®¾ç½®ä¸ºnot null
+        c.æ·»åŠ ç´¢å¼•
+        æ‰©å±•int(3)ä¸Žint(11)çš„åŒºåˆ«ï¼Œdatetimeä¸Žtimestampçš„åŒºåˆ«
+    sqlä¼˜åŒ–
+        a.å½“åªéœ€è¦æŸ¥è¯¢ä¸€æ¡æ—¶ä½¿ç”¨limit1
+        b.åƒä¸‡ä¸è¦ä½¿ç”¨order by rand()æ¥èŽ·å–éšæœºçš„è¡Œ
+        c.é¿å…select * æ“ä½œï¼ŒåªæŸ¥è¯¢è‡ªå·±éœ€è¦çš„å­—æ®µ
+        d.å°½å¯èƒ½åœ¨ç´¢å¼•ä¸­å®ŒæˆæŽ’åº
+        e.æ°¸è¿œç”¨å°çš„ç»“æžœé›†é©±åŠ¨å¤§çš„ç»“æžœé›†
+        f.å°½å¯èƒ½é¿å…å¤æ‚çš„joinå’Œå­æŸ¥è¯¢
+        g.ä»Žexplainå…¥æ‰‹
+        h.å¤šä½¿ç”¨profile
+    ç´¢å¼•ä¼˜åŒ–
+        a.ä¸ºè¾ƒé¢‘ç¹çš„ä½œä¸ºæŸ¥è¯¢æ¡ä»¶çš„å­—æ®µå»ºç«‹ç´¢å¼•
+        b.å”¯ä¸€æ€§å¤ªå·®çš„å­—æ®µä¸é€‚åˆå•ç‹¬åˆ›å»ºç´¢å¼•ï¼Œæ¯”å¦‚çŠ¶æ€å­—æ®µï¼Œç±»åž‹å­—æ®µ
+        c.blogå’Œtextç±»åž‹çš„åˆ—åªèƒ½åˆ›å»ºå‰ç¼€ç´¢å¼•
+        d.ä½¿ç”¨!=å’Œnot in çš„ä½¿ç”¨ï¼Œmysqlæ— æ³•ä½¿ç”¨ç´¢å¼•
+        e.è¿‡æ»¤å­—æ®µä½¿ç”¨äº†å‡½æ•°è¿ç®—ï¼Œå¦‚abs(columnï¼‰,mysqlæ— æ³•ä½¿ç”¨ç´¢å¼•
+        f.joinè¯­å¥ä¸­joinæ¡ä»¶å­—æ®µç±»åž‹ä¸ä¸€è‡´çš„æ—¶å€™ï¼Œmysqlæ— æ³•ç´¢å¼•
+        g.ä½¿ç”¨likeçš„æ—¶å€™ï¼Œå¦‚æžœæ¡ä»¶é€šé…ç¬¦ä»¥%å¼€å¤´ï¼Œmysqlæ— æ³•ä½¿ç”¨ç´¢å¼•
+        æ‰©å±•ç´¢å¼•çš„ç§ç±»ï¼ˆä¸»é”®ç´¢å¼•ï¼Œæ™®é€šç´¢å¼•ï¼Œå”¯ä¸€ç´¢å¼•ï¼Œè”åˆç´¢å¼•ï¼Œå…¨æ–‡ç´¢å¼•ï¼‰
+        è”åˆç´¢å¼•æ¯”å¦‚åˆ›å»ºçš„ç´¢å¼•æ˜¯ï¼ˆa,b,cï¼‰ï¼Œåªæœ‰åœ¨æŸ¥è¯¢çš„æ—¶å€™a,ab,ac,abcè¿™ä¸‰ç§æ—¶å€™æ‰ä¼šç”¨åˆ°ç´¢å¼•ï¼Œwhere åŽé¢çš„æŸ¥è¯¢å­—æ®µé¡ºåºä¸å½±å“ï¼Œå¯ä»¥æ˜¯cab,cbaï¼Œbcaç­‰ï¼Œå…³é”®æ˜¯å¿…é¡»è¦æœ‰aè¿™ä¸ªæŸ¥è¯¢å­—æ®µã€‚
 
     
-2.mysqlµÄÖ÷´Ó»úÖÆ¼°ÅäÖÃ
-    Ö÷´Ó»úÖÆbinglogÔ­Àí·ÖÎö
-    ¸´ÖÆÓÐ3¸ö²½Öè£º   
-       (1)    master½«¸Ä±ä¼ÇÂ¼µ½¶þ½øÖÆÈÕÖ¾(binary log)ÖÐ£¨ÕâÐ©¼ÇÂ¼½Ð×ö¶þ½øÖÆÈÕÖ¾ÊÂ¼þ£¬binary log events£©£»
-       (2)    slave½«masterµÄbinary log events¿½±´µ½ËüµÄÖÐ¼ÌÈÕÖ¾(relay log)£»
-       (3)    slaveÖØ×öÖÐ¼ÌÈÕÖ¾ÖÐµÄÊÂ¼þ£¬½«¸Ä±ä·´Ó³Ëü×Ô¼ºµÄÊý¾Ý¡£
-    ÈçºÎ½øÐÐÖ÷´ÓÅäÖÃ
-3.mysql·Ö¿â·Ö±í
-    ³£¹æµÄÈ¡%·Ö±í£¨¸ù¾ÝÓÃ»§idµÄ×îºóÒ»Î»¶ÔÄ³¸öÌØ¶¨µÄÖµÈ¡ÓàÊý£©
-    ²»³£¹æµÄÓÃ»§ºÍÉÌÆÌ¿´µ½µÄ¶©µ¥·Ö¿â·Ö±íÉè¼Æ(¶¼´ÓËÑË÷ÒýÇæÀïÃæ»ñÈ¡Êý¾Ý)
+2.mysqlçš„ä¸»ä»Žæœºåˆ¶åŠé…ç½®
+    ä¸»ä»Žæœºåˆ¶binglogåŽŸç†åˆ†æž
+    å¤åˆ¶æœ‰3ä¸ªæ­¥éª¤ï¼š   
+       (1)    masterå°†æ”¹å˜è®°å½•åˆ°äºŒè¿›åˆ¶æ—¥å¿—(binary log)ä¸­ï¼ˆè¿™äº›è®°å½•å«åšäºŒè¿›åˆ¶æ—¥å¿—äº‹ä»¶ï¼Œbinary log eventsï¼‰ï¼›
+       (2)    slaveå°†masterçš„binary log eventsæ‹·è´åˆ°å®ƒçš„ä¸­ç»§æ—¥å¿—(relay log)ï¼›
+       (3)    slaveé‡åšä¸­ç»§æ—¥å¿—ä¸­çš„äº‹ä»¶ï¼Œå°†æ”¹å˜åæ˜ å®ƒè‡ªå·±çš„æ•°æ®ã€‚
+    å¦‚ä½•è¿›è¡Œä¸»ä»Žé…ç½®
+3.mysqlåˆ†åº“åˆ†è¡¨
+    å¸¸è§„çš„å–%åˆ†è¡¨ï¼ˆæ ¹æ®ç”¨æˆ·idçš„æœ€åŽä¸€ä½å¯¹æŸä¸ªç‰¹å®šçš„å€¼å–ä½™æ•°ï¼‰
+    ä¸å¸¸è§„çš„ç”¨æˆ·å’Œå•†é“ºçœ‹åˆ°çš„è®¢å•åˆ†åº“åˆ†è¡¨è®¾è®¡(éƒ½ä»Žæœç´¢å¼•æ“Žé‡Œé¢èŽ·å–æ•°æ®)
 
-linux·½Ãæ
-1.»ù±¾ÃüÁî
+linuxæ–¹é¢
+1.åŸºæœ¬å‘½ä»¤
     tar ps w top du df find grep 
-2.shell½Å±¾
-    mysql¼à¿Ø¼°±¨¾¯
-    php½ø³Ì¼à¿Ø¼°±¨¾¯
-    ´ÅÅÌÈÝÁ¿±¨¾¯
-    ÖØÒªÎÄ¼þµÄ±¸·Ý
+2.shellè„šæœ¬
+    mysqlç›‘æŽ§åŠæŠ¥è­¦
+    phpè¿›ç¨‹ç›‘æŽ§åŠæŠ¥è­¦
+    ç£ç›˜å®¹é‡æŠ¥è­¦
+    é‡è¦æ–‡ä»¶çš„å¤‡ä»½
     
-3.svnµÄÅäÖÃ¼°È¨ÏÞ¹ÜÀí
+3.svnçš„é…ç½®åŠæƒé™ç®¡ç†
 
 nginx
-1.nginxÓëphpÔËÐÐµÄ»úÖÆ  http://www.server110.com/nginx/201402/6543.html
-    fastcgiÔ­Àí·ÖÎö Í¨¹ýfast-cgiÀ´ÔËÐÐ
-2.nginxµÄ¸ºÔØ¾ùºâ
-    upstreamµÄÅäÖÃ
-3.nginxµÄÀ©Õ¹
+1.nginxä¸Žphpè¿è¡Œçš„æœºåˆ¶  http://www.server110.com/nginx/201402/6543.html
+    fastcgiåŽŸç†åˆ†æž é€šè¿‡fast-cgiæ¥è¿è¡Œ
+2.nginxçš„è´Ÿè½½å‡è¡¡
+    upstreamçš„é…ç½®
+3.nginxçš„æ‰©å±•
 
-»º´æ·½Ãæ£¨memcache¡¢redis£©
-1.memcacheÓëredisµÄÊ¹ÓÃ³¡¾°
-2.memcacheÓëredisµÄÇø±ð
-3.redisÀïÃæ±£´æÔÚÓ²ÅÌµÄÊ±ºòÓÐÄÄ¼¸ÖÖ·½Ê½
+ç¼“å­˜æ–¹é¢ï¼ˆmemcacheã€redisï¼‰
+1.memcacheä¸Žredisçš„ä½¿ç”¨åœºæ™¯
+2.memcacheä¸Žredisçš„åŒºåˆ«
+3.redisé‡Œé¢ä¿å­˜åœ¨ç¡¬ç›˜çš„æ—¶å€™æœ‰å“ªå‡ ç§æ–¹å¼
 
-·þÎñÆ÷¼Ü¹¹·½Ãæ
-1.¸ß²¢·¢¸ß·ÃÎÊÁ¿µÄÇé¿öµÄ´¦Àí·½Ê½
-2.Ç§Íò¼¶ÍøÕ¾µÄ¼Ü¹¹Éè¼Æ£¬ÒÚÍò¼¶ÍøÕ¾µÄ¼Ü¹¹Éè¼Æ
-3.ÍøÕ¾·ÃÎÊÂý£¬ÈçºÎ¶¨Î»ÎÊÌâ£¬ÊÇ³ÌÐòÂý»¹ÊÇ·þÎñÆ÷µÄcpu£¬Ó²ÅÌ£¬»¹ÊÇmysqlÂý
-    Ê×ÏÈ¼ì²éÍøÂçÊÇ·ñÂý£¬Èç¹û²»ÊÇÍøÂçÂýµÄ»°ÔÙ¼ÌÐø¿´ÏµÍ³µÄ¸ºÔØÇé¿ö£¬Èç¹û¸ºÔØÒ²²»´óµÄ»°£¬¼ÌÐø¸ú×Ù·þÎñÆ÷cpu,´ÅÅÌ£¬½»»»¿Õ¼äµÄÇé¿ö£¬¶¨Î»µ½¾ßÌåÊÇÄÄ¸ö½ø³Ì³öÏÖµÄÎÊÌâ£¬
-Èç¹ûÊÇ³ÌÐòµÄÎÊÌâ£¬¾ÍÐèÒª¿¼ÂÇÓÅ»¯³ÌÐò£¬Èç¹ûÊÇÆäËûµÄ·þÎñ³öÏÖÎÊÌâ£¬¿ÉÒÔ¸ú×Ù¸Ã·þÎñµÄÈÕÖ¾¡£
+æœåŠ¡å™¨æž¶æž„æ–¹é¢
+1.é«˜å¹¶å‘é«˜è®¿é—®é‡çš„æƒ…å†µçš„å¤„ç†æ–¹å¼
+2.åƒä¸‡çº§ç½‘ç«™çš„æž¶æž„è®¾è®¡ï¼Œäº¿ä¸‡çº§ç½‘ç«™çš„æž¶æž„è®¾è®¡
+3.ç½‘ç«™è®¿é—®æ…¢ï¼Œå¦‚ä½•å®šä½é—®é¢˜ï¼Œæ˜¯ç¨‹åºæ…¢è¿˜æ˜¯æœåŠ¡å™¨çš„cpuï¼Œç¡¬ç›˜ï¼Œè¿˜æ˜¯mysqlæ…¢
+    é¦–å…ˆæ£€æŸ¥ç½‘ç»œæ˜¯å¦æ…¢ï¼Œå¦‚æžœä¸æ˜¯ç½‘ç»œæ…¢çš„è¯å†ç»§ç»­çœ‹ç³»ç»Ÿçš„è´Ÿè½½æƒ…å†µï¼Œå¦‚æžœè´Ÿè½½ä¹Ÿä¸å¤§çš„è¯ï¼Œç»§ç»­è·Ÿè¸ªæœåŠ¡å™¨cpu,ç£ç›˜ï¼Œäº¤æ¢ç©ºé—´çš„æƒ…å†µï¼Œå®šä½åˆ°å…·ä½“æ˜¯å“ªä¸ªè¿›ç¨‹å‡ºçŽ°çš„é—®é¢˜ï¼Œ
+å¦‚æžœæ˜¯ç¨‹åºçš„é—®é¢˜ï¼Œå°±éœ€è¦è€ƒè™‘ä¼˜åŒ–ç¨‹åºï¼Œå¦‚æžœæ˜¯å…¶ä»–çš„æœåŠ¡å‡ºçŽ°é—®é¢˜ï¼Œå¯ä»¥è·Ÿè¸ªè¯¥æœåŠ¡çš„æ—¥å¿—ã€‚
+
+ç½‘ç«™è®¿é—®æ…¢éƒ½æœ‰å“ªäº›è§£å†³æ–¹æ³•
+1.æœåŠ¡å™¨æ–¹é¢
+
+2.ç¨‹åºæ–¹é¢
+
+3.ç¼“å­˜æ–¹é¢
+
+4.å®¢æˆ·ç«¯ç¼“å­˜
 
 
 
