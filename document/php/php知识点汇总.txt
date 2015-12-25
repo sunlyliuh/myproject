@@ -1,4 +1,4 @@
-php方面
+﻿php方面
 1.数据算法
   冒泡排序，快速排序
 2.程序优化方面
@@ -84,9 +84,10 @@ nginx
 
 缓存方面（memcache、redis）
 1.memcache与redis的使用场景
-2.memcache与redis的区别
+2.memcache与redis的区别  http://blog.csdn.net/lishehe/article/details/45601423
 3.redis里面保存在硬盘的时候有哪几种方式  aof, rdb，具体的实现机制是什么 http://www.cnblogs.com/scott19820130/p/4915878.html
 4.使用memcache的时候，发现占用的空间达到70%左右就开始删除数据，使用memcache存储原理来解释这一现象
+http://my.oschina.net/bieber/blog/505458
 
 服务器架构方面
 1.高并发高访问量的情况的处理方式
