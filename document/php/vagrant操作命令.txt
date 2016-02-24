@@ -1,0 +1,26 @@
+1.添加镜像到vagrant
+vagrant box add 名称 路径
+>>vagrant box add dev d:/dev/dev.box
+
+2.初始化开发环境(切换到自己的开发目录初始化比如d:/www)
+vagrant init dev  #初始化
+
+3.启动虚拟机
+vagrant up
+
+4.使用ssh登陆 服务器
+ip可以从vagrantfile里面看到，也可以修改ip，
+修改需要同步的文件，还可以指定所在的owner和group
+config.vm.synced_folder "d:/dev", "/home/wwwroot/default/talk",owner: "www", group: "www"
+修改文件后记得重启
+用户名是root，密码是vagrant
+
+5.显示当前已经添加的box列表
+vagrant box list 
+
+6.删除相应的box
+vagrant box remove 
+>>vagrant box remove dev virtualbox
+
+7.关机
+>>vagrant halt
